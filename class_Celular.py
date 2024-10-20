@@ -1,8 +1,7 @@
 from class_App import *
-from class_central import *
+from class_Central import *
 from class_Tienda import *
 from class_App import *
-from class_central import *
 from class_Configuracion import *
 from class_Contactos import *
 from class_Mensajeria import *
@@ -10,7 +9,7 @@ from class_Email import*
 from class_Telefono import*
 
 class Celular:
-    def _init_(self, id_unico, nombre, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
+    def _init_(self, id_unico, nombre, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono,central):
         self.id_unico = id_unico
         self.nombre = nombre
         self.modelo = modelo
@@ -24,10 +23,11 @@ class Celular:
         self.red=False
         self.datos=False
         self.aplicaciones_descargadas= []
+        self.central=central
         self.tienda = Tienda(self)
-        self.telefono= Telefono()
+        self.telefono= Telefono(self.central,self)
         self.contactos=Contactos()
-        self.mensajeria=Mensajeria()
+        self.mensajeria=Mensajeria(self.central,self)
         self.email=Email()
         self.configuracion = Configuracion()
         self.tienda.descargada=True 

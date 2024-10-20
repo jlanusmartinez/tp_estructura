@@ -1,10 +1,9 @@
 from class_App import Aplicacion
 from class_Celular import Celular
 from class_App import *
-from class_central import *
 from class_Tienda import *
 from class_App import *
-from class_central import *
+from class_Central import *
 from class_Configuracion import *
 from class_Contactos import *
 from class_Mensajeria import *
@@ -40,8 +39,33 @@ class Grafico(Aplicacion):
 class Tienda:
 
     def __init__(self,celular):
-        super().__init__("Tienda")
+        super().__init__(6,"Tienda")
         self.celular = celular
         
     def descargar_app(self,nombre_app):
-        pass
+        if self.estado==True:
+            if (hasattr(self.celular,nombre_app)):
+                app= getattr(self.celular,nombre_app)
+                if app.descargada:
+                  print('App ya descargada')
+                else:
+                    app.descargada=True
+                    print('App descargada')
+            else:
+                print('App no existente')
+        else:
+            print('App Tienda no abierta ')
+
+    def eliminar_app(self,nombre_app):
+        if self.estado==True:
+            if (hasattr(self.celular,nombre_app)):
+                app= getattr(self.celular,nombre_app)
+                if not(app.descargada):
+                  print('App no descargada')
+                else:
+                    app.descargada=False
+                    print('App eliminda')
+            else:
+                print('App no existente')
+        else:
+            print('App Tienda no abierta ')
