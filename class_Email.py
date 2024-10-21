@@ -1,6 +1,6 @@
-from class_App import Aplicacion
-from class_Celular import Celular
-from datetime import datetime
+from class_App import *
+from class_Celular import *
+from datetime import *
 
 
 class Email(Aplicacion):
