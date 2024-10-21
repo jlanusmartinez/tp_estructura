@@ -1,24 +1,23 @@
-class Cola:
+class Pila:
     def __init__(self):
         self.elementos = []
 
-    def encolar(self, item):
-        """Agrega un elemento al final de la cola."""
+    def apilar(self, item):
+        """Agrega un elemento a la cima de la pila."""
         self.elementos.append(item)
 
-    def desencolar(self):
-        """Elimina y devuelve el primer elemento de la cola."""
+    def desapilar(self):
+        """Elimina y devuelve el elemento en la cima de la pila."""
         if not self.esta_vacia():
-            return self.elementos.pop(0)
+            return self.elementos.pop()
         else:
-            print("La cola está vacía.")
+            print("La pila está vacía.")
             return None
 
     def esta_vacia(self):
-        """Verifica si la cola está vacía."""
+        """Verifica si la pila está vacía."""
         return len(self.elementos) == 0
 
     def tamano(self):
-        """Devuelve el tamaño de la cola."""
+        """Devuelve el tamaño de la pila."""
         return len(self.elementos)
-    
