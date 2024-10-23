@@ -2,7 +2,7 @@ from class_App import *
 from class_Celular import *
 from class_pila import *
 
-#Use cola
+#Use pila
 class Mensajeria(Aplicacion):
     def __init__(self,central,celular):
         super().__init__(2,'Mensajeria')
