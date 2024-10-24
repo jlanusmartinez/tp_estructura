@@ -1,4 +1,4 @@
-from class_Celular import Celular
+
 
 class Aplicacion:
     def __init__(self,Id,nombre):

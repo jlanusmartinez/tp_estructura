@@ -1,14 +1,6 @@
 from class_App import Aplicacion
-from class_Celular import Celular
 from class_App import *
-from class_Tienda import *
-from class_App import *
-from class_Central import *
-from class_Configuracion import *
-from class_Contactos import *
-from class_Mensajeria import *
-from class_Email import*
-from class_Telefono import*
+from class_Celular import * 
 
 """""
 class Tienda(Aplicacion):
@@ -36,9 +28,9 @@ class Grafico(Aplicacion):
 
 """""
 
-class Tienda:
+class Tienda(Aplicacion):
 
-    def __init__(self,celular):
+    def __init__(self,celular:Celular):
         super().__init__(6,"Tienda")
         self.celular = celular
         

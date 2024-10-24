@@ -1,5 +1,4 @@
 from class_App import *
-from class_Celular import *
 from datetime import *
 
 

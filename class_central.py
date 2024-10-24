@@ -1,12 +1,4 @@
-from class_App import *
-from class_Central import *
-from class_Tienda import *
-from class_App import *
-from class_Configuracion import *
-from class_Contactos import *
-from class_Mensajeria import *
-from class_Email import*
-from class_Telefono import*
+
 from datetime import datetime
 
 class Central :
@@ -17,8 +9,8 @@ class Central :
         self.registro_sms=[]
         
 
-    def agregar_celular(self,celular:Celular):
-        self.dispositivos_registrados[celular.numero]=celular
+    def agregar_celular(self,celular):
+        self.dispositivos_registrados[celular.numero_telefono]=celular
     
     def eliminar_dispositivo(self, numero):
         if numero in self.dispositivos_registrados:
