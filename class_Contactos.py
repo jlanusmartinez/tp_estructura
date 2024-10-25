@@ -1,5 +1,4 @@
 from class_App import Aplicacion
-from class_Celular import Celular
 
 class Contactos(Aplicacion):
     def __init__(self):

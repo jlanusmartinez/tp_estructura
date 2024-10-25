@@ -1,6 +1,5 @@
 from class_App import Aplicacion
-from class_App import *
-from class_Celular import * 
+from class_App import * 
 
 """""
 class Tienda(Aplicacion):
@@ -27,37 +26,62 @@ class Grafico(Aplicacion):
 #CLASE PARA DESPUES
 
 """""
+# def descargar_app(self,nombre_app):
+    #     if self.estado==True:
+    #         if (hasattr(self.celular,nombre_app)):
+    #             app= getattr(self.celular,nombre_app)
+    #             if app.descargada:
+    #               print('App ya descargada')
+    #             else:
+    #                 app.descargada=True
+    #                 print('App descargada')
+    #         else:
+    #             print('App no existente')
+    #     else:
+    #         print('App Tienda no abierta ')
 
+    # def eliminar_app(self,nombre_app):
+    #     if self.estado==True:
+    #         if (hasattr(self.celular,nombre_app)):
+    #             app= getattr(self.celular,nombre_app)
+    #             if not(app.descargada):
+    #               print('App no descargada')
+    #             else:
+    #                 app.descargada=False
+    #                 print('App eliminda')
+    #         else:
+    #             print('App no existente')
+    #     else:
+    #         print('App Tienda no abierta ')
 class Tienda(Aplicacion):
 
-    def __init__(self,celular:Celular):
+    def __init__(self):
         super().__init__(6,"Tienda")
-        self.celular = celular
-        
-    def descargar_app(self,nombre_app):
-        if self.estado==True:
-            if (hasattr(self.celular,nombre_app)):
-                app= getattr(self.celular,nombre_app)
-                if app.descargada:
-                  print('App ya descargada')
-                else:
-                    app.descargada=True
-                    print('App descargada')
-            else:
-                print('App no existente')
+        self.aplicaciones_descargadas={6:"Tienda",5:"Configuracion"}
+    
+    def descargar_aplicacion(self, codigo, nombre):
+        if codigo in self.aplicaciones_descargadas:
+            print(f"La aplicación con código {codigo} ya está descargada.")
         else:
-            print('App Tienda no abierta ')
+            self.aplicaciones_descargadas[codigo] = nombre
+            print(f"Aplicación {nombre} descargada con el código {codigo}.")
 
-    def eliminar_app(self,nombre_app):
-        if self.estado==True:
-            if (hasattr(self.celular,nombre_app)):
-                app= getattr(self.celular,nombre_app)
-                if not(app.descargada):
-                  print('App no descargada')
-                else:
-                    app.descargada=False
-                    print('App eliminda')
-            else:
-                print('App no existente')
+    def mostrar_aplicaciones(self):
+        print("Aplicaciones descargadas:")
+        for codigo, nombre in self.aplicaciones_descargadas.items():
+            print(f"Código: {codigo}, Nombre: {nombre}")
+        
+    def eliminar_aplicacion(self, codigo):
+        # Comprobar si el código es para "Tienda" o "Configuración"
+        if codigo in [6, 5]:
+            print("No se puede eliminar la aplicación preinstalada:", self.aplicaciones_descargadas[codigo])
         else:
-            print('App Tienda no abierta ')
+            if codigo in self.aplicaciones_descargadas:
+                del self.aplicaciones_descargadas[codigo]
+                print(f"Aplicación con código {codigo} eliminada.")
+            else:
+                print(f"No se encontró la aplicación con código {codigo}.")
+    
+        
+        
+    

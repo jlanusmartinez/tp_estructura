@@ -1,17 +1,15 @@
 from class_App import *
 from class_pila import *
-from class_Celular import *
 #Use pila
 class Mensajeria(Aplicacion):
-    def __init__(self,central,celular):
+    def __init__(self, numero_telefono):
         super().__init__(2,'Mensajeria')
-        self.central=central
         self.numero_telefono = numero_telefono
         self.bandeja_sms = Pila()
 
     def enviar_sms(self, numero_destino, mensaje):
         if self.estado:
-            self.central.sms(self.celular.numero,numero_destino,mensaje)
+            self.central.sms(self.numero_telefono ,numero_destino,mensaje)
             self.bandeja_sms.apilar(f"Enviado a {numero_destino}: {mensaje}")
             print(f"SMS enviado a {numero_destino}: {mensaje}")
         else :
@@ -19,7 +17,7 @@ class Mensajeria(Aplicacion):
         
     def recibir_sms(self, numero_destino, mensaje):
         if self.estado:
-            self.central.sms(self.celular.numero_telefono,numero_destino,mensaje)
+            self.central.sms(self.numero_telefono,numero_destino,mensaje)
             self.bandeja_sms.apilar(f"Recibido: {numero_destino}: {mensaje}")
             print(f"SMS recibido de {numero_destino}: {mensaje}")
         else :

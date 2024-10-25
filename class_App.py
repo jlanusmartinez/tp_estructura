@@ -1,5 +1,4 @@
 
-
 class Aplicacion:
     def __init__(self,Id,nombre):
         self.Id = Id

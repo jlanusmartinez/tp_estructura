@@ -1,5 +1,4 @@
 from class_App import Aplicacion
-from class_Celular import Celular
 
 class Configuracion(Aplicacion):
     def __init__(self, nombre_telefono, codigo_desbloqueo):
@@ -8,56 +7,38 @@ class Configuracion(Aplicacion):
         self.codigo_desbloqueo = codigo_desbloqueo
         self.red_movil_activada = False
         self.datos_activados = False
+        
 
-    def on_off_red_movil(self,celular:Celular):
-        if celular.red == False:
-            celular.red = True
+    def on_off_red_movil(self):
+        if self.red_movil_activada == False:
+            self.red_movil_activada = True
             print("Red móvil activada.")
-        elif celular.red ==True:
-            celular.red = False
+        elif self.red_movil_activada ==True:
+            self.red_movil_activada = False
             print("Red móvil desactivada.")
 
-    def on_off_datos(self,celular:Celular):
+    def on_off_datos(self):
         
         #Activa o desactiva los datos móviles del teléfono.
     
-        if celular.datos == False:
-            celular.datos = True
+        if self.datos_activados == False:
+            self.datos_activados = True
             print('Datos móviles activados')
-        elif celular.datos == True:
-            celular.datos = False
+        elif self.datos_activados == True:
+            self.datos_activados = False
             print('Datos móviles desactivados')
 
 
-
-
-    def activar_datos(self):
-        self.datos_activados = True
-        print("Datos activados.")
-
-    def desactivar_datos(self):
-        self.datos_activados = False
-        print("Datos desactivados.")
-        
-    #METODOS CONFIGURACION CHATGPT
-    def configurar(self, nombre_telefono=None, codigo_desbloqueo=None):
+    def cambiar_nombre(self, nombre_telefono):
         if nombre_telefono:
             self.nombre = nombre_telefono
-        if codigo_desbloqueo:
+            print("Código de desbloqueo configurado.")
+        else :
             print("Código de desbloqueo configurado.")
 
-    def activar_red_movil(self):
-        if self.encendido:
-            print("Red móvil activada.")
-
-    def desactivar_red_movil(self):
-        if self.encendido:
-            print("Red móvil desactivada.")
-
-    def activar_datos(self):
-        if self.encendido:
-            print("Datos activados.")
-
-    def desactivar_datos(self):
-        if self.encendido:
-            print("Datos desactivados.")
+    def cambiar_codigo(self,  codigo_desbloqueo):
+        if codigo_desbloqueo:
+            self.codigo_desbloqueo = codigo_desbloqueo
+            print("Código de desbloqueo configurado.")
+        else:
+            print("Código de desbloqueo configurado.")

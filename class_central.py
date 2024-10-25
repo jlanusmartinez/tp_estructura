@@ -1,6 +1,7 @@
 
 from datetime import datetime
-
+from class_Celular import Celular
+from class_Telefono import *
 class Central :
     
     def __init__(self):
@@ -9,7 +10,7 @@ class Central :
         self.registro_sms=[]
         
 
-    def agregar_celular(self,celular):
+    def agregar_celular(self,celular:Celular):
         self.dispositivos_registrados[celular.numero_telefono]=celular
     
     def eliminar_dispositivo(self, numero):
@@ -45,13 +46,21 @@ class Central :
         return True
     
     
-    def llamada(self,numero_emisor,numero_recive):
+    def llamada(self,numero_emisor,numero_recive,duracion):
+
         if not self.estado_dispositivo(numero_emisor):
             print("Llamada fallida: El emisor no está disponible.")
             return 
         if not self.estado_dispositivo(numero_recive):
             print("Llamada fallida: El receptor no está disponible.")
             return
+        celular_1= self.dispositivos_registrados.get(numero_emisor)
+        celular_2= self.dispositivos_registrados.get(numero_recive)
+        hora_actual=datetime.now()
+        if celular_1.telefono.ocupado_hasta and hora_actual < celular_1.telefono.ocupado_hasta:
+                print(f"No se puede realizar la llamada. El teléfono estará ocupado hasta: {celular_1.telefono.ocupado_hasta}.")
+                return
+        celular_1.telefono.llamada_realizada(numero_recive,duracion,datetime.now())
 
         print(f"Llamada conectada entre {numero_emisor} y {numero_recive}.")
         self.registro_llamadas.append((numero_emisor, numero_recive, "conectada",datetime.now()))
