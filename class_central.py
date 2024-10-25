@@ -10,7 +10,7 @@ class Central :
         self.registro_sms=[]
         
 
-    def agregar_celular(self,celular:Celular):
+    def agregar_celular(self,celular):
         self.dispositivos_registrados[celular.numero_telefono]=celular
     
     def eliminar_dispositivo(self, numero):

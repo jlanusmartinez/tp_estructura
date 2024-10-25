@@ -11,6 +11,7 @@ class Email(Aplicacion):
         print(f"Email recibido de {email_origen}: {mensaje} el {fecha}")
 #tipo fecha: "22/10/2024 10:00:00"
     def ver_emails_por_leidos(self):
+        
         no_leidos = []
         leidos = []
 

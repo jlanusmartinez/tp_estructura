@@ -25,8 +25,7 @@ class Telefono(Aplicacion):
         self.registro_llamadas.append(llamada)
         self.ocupado_hasta = tiempo_finalizacion
     
-        def imprimir_registro(self):
-   
+    def imprimir_registro(self):
             if not self.registro_llamadas:
                 print("No hay registros de llamadas.")
                 return

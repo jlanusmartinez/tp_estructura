@@ -1,5 +1,4 @@
 from class_App import *
-from class_Central import *
 from class_Tienda import *
 from class_App import *
 from class_Configuracion import *
@@ -9,7 +8,7 @@ from class_Email import*
 from class_Telefono import*
 
 class Celular:
-    def _init_(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
+    def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
         self.id_unico = id_unico
         self.nombre = nombre
         self.codigo_desbloqueo=codigo_desbloqueo
@@ -21,23 +20,33 @@ class Celular:
         self.numero_telefono = numero_telefono
         self.encendido = False
         self.bloqueado = True
-        self.tienda = Tienda(self)
+        self.tienda = Tienda()
         self.telefono= Telefono(self.numero_telefono)
         self.contactos=Contactos()
         self.mensajeria=Mensajeria(self.numero_telefono)
         self.email=Email()
         self.configuracion = Configuracion(self.nombre,self.codigo_desbloqueo)
         self.tienda.descargada=True 
+    
+    def __str__(self):
+        return (f"Celular(ID: {self.id_unico}, Nombre: {self.nombre}, Modelo: {self.modelo}, "
+                f"Sistema Operativo: {self.sistema_operativo} {self.version}, "
+                f"Memoria RAM: {self.memoria_ram}GB, Almacenamiento: {self.almacenamiento}GB, "
+                f"Número de Teléfono: {self.numero_telefono}, "
+                f"Encendido: {self.encendido}, Bloqueado: {self.bloqueado})")
 
     def encender_celular(self):
         self.encendido = True
         self.red= True
         print("El telefono esta encendido.")
-        self.activar_red_movil()
+        self.configuracion.red_movil_activada= True
+        self.configuracion.datos_activados=True
 
     def apagar_celular(self):
         self.encendido = False
         self.red = False
+        self.configuracion.red_movil_activada = False
+        self.configuracion.datos_activados=False
         print("El telefono esta apagado.")
 
     def bloquear_celular(self):
@@ -71,7 +80,7 @@ class Celular:
     
     def validar_aplicacion(self, codigo):
         """Verifica si la aplicación está descargada."""
-        return codigo in self.aplicaciones_descargadas
+        return codigo in self.tienda.aplicaciones_descargadas
     
     def on_off_red_movil_celular(self):
         if self.validar_aplicacion(5):
@@ -92,13 +101,19 @@ class Celular:
             return self.configuracion.codigo_desbloqueo
         
     def descargar_app(self,codigo,nombre):
-        self.descargar_aplicacion(codigo,nombre)
+        self.tienda.descargar_aplicacion(codigo,nombre)
     
     def mostrar_apps(self):
-        self.mostrar_aplicaciones()
+        self.tienda.mostrar_aplicaciones()
     
     def eliminar_app(self,codigo):
-        self.eliminar_aplicacion(codigo)
+        self.tienda.eliminar_aplicacion(codigo)
+    
+    def recibir_email_celular(self, email_origen, mensaje, fecha=datetime.now().strftime("%d/%m/%Y %H:%M:%S")):
+        if self.validar_aplicacion(3):
+            self.email.recibir_email(email_origen, mensaje, fecha)
+        else:
+            print('Aplicacion no descargada')
         
         
         

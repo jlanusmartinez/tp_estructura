@@ -1,5 +1,4 @@
 from class_App import Aplicacion
-from class_App import * 
 
 """""
 class Tienda(Aplicacion):
