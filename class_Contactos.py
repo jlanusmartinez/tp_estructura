@@ -34,7 +34,3 @@ class Contactos(Aplicacion):
     def ver_contactos(self):
         print(f"Contactos: {self.contactos}")
     
-    #METODOS CONTACTOS CHATGPT
-    def agendar_contacto(self, nombre, numero):
-        self.contactos[nombre] = numero
-        print(f"Contacto {nombre} agregado.")

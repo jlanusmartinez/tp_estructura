@@ -1,3 +1,5 @@
+#PREGUNTAR A LUCAS CUESTION DEL MAIN, COMO LO HACEMOS?
+#PARA MANDAR MSJS/LLAMADAS NECESITO VERIFICAR YA LO TENGA AGENDADO
 from class_App import Aplicacion
 from class_Celular import Celular
 from class_Central import Central
@@ -22,17 +24,32 @@ if __name__ == '__main__':
     celular2.encender_celular()
     celular1.desbloquear_celular()
     celular2.desbloquear_celular()
+    celular1.descargar_app(3,'Email')
     celular3.encender_celular()
     celular3.desbloquear_celular()
-    celular1.mostrar_apps()
-    celular1.descargar_app(3,'Email')
-    celular1.mostrar_apps()
-    celular1.mostrar_apps()
-    celular1.recibir_email_celular('franco','hola',"22/10/2024 10:00:00")
+    
+    # celular1.recibir_email_celular('franco','hola, como va')
+    # celular1.recibir_email_celular('joaco','boca','10/10/2021 10:10:10')
+    
+    # celular1.ver_emails_por_fecha_celular()
+    # celular1.recibir_email_celular('joaco','bocaaaaaaaaaaaaaaaaa','8/10/2017 10:10:10')
+    # celular1.ver_emails_por_leidos_celular()
+    
+    # celular1.descargar_app(1,'Contactos')
+    # celular1.agregar_contacto_celular('franco','11111111')
+    # celular1.agregar_contacto_celular('franco','11111111')
+    # celular1.ver_contactos_celular()
     central.llamada(1234,11111111,10)
-    central.llamada(29292929,11111111,90)
+    celular1.telefono.imprimir_registro()    
+    central.llamada(29292929,1234,50)
     celular1.telefono.imprimir_registro()
-    celular3.telefono.imprimir_registro()    
+    central.sms(1234,11111111,'hola')
+    celular2.mensajeria.ver_bandeja_sms()
+    
+    
+    
+    
+    
     
     
 

@@ -113,7 +113,52 @@ class Celular:
         if self.validar_aplicacion(3):
             self.email.recibir_email(email_origen, mensaje, fecha)
         else:
-            print('Aplicacion no descargada')
+            print('Aplicacion: Email no descargada')
+            
+    def ver_emails_por_leidos_celular(self):
+        if self.validar_aplicacion(3):
+            self.email.ver_emails_por_leidos()
+        else:
+            print('Aplicacion: Email no descargada')
+    
+    def ver_emails_por_fecha_celular(self):
+        if self.validar_aplicacion(3):
+            self.email.ver_emails_por_fecha()
+        else:
+            print('Aplicacion:Email no descargada')
+    
+    def agregar_contacto_celular(self, nombre, numero):
+        if self.validar_aplicacion(1):
+            self.contactos.agregar_contacto(nombre, numero)
+        else:
+            print('Aplicacion:Contactos no descargada')
+    
+    def eliminar_contacto_celular(self, nombre):
+        if self.validar_aplicacion(1):
+            self.contactos.eliminar_contacto(nombre)
+        else:
+            print('Aplicacion:Contactos no descargada')
+    
+    def actualizar_contacto_celular(self, nombre, nuevo_nombre):
+        if self.validar_aplicacion(1):
+            self.contactos.actualizar_contacto(nombre, nuevo_nombre)
+        else:
+            print('Aplicacion:Contactos no descargada')
+        
+    def ver_contactos_celular(self):
+        if self.validar_aplicacion(1):
+            self.contactos.ver_contactos()
+        else:
+            print('Aplicacion:Contactos no descargada')
+            
+        
+            
+    
+    
+        
+    
+    
+        
         
         
         
