@@ -96,21 +96,30 @@ class Central :
         print(f"Llamada conectada entre {numero_emisor} y {numero_recibe}.")
         self.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", datetime.now()))
     
-    def sms(self,numero_emisor,numero_recibe,mensaje):
+    def enviar_sms(self,numero_emisor,numero_recibe,mensaje,fecha=datetime.now().strftime("%d/%m/%Y %H:%M:%S")):
         if not self.estado_dispositivo(numero_emisor):
             print("SMS fallido: El emisor no está disponible.")
             return  
         if not(self.estado_dispositivo(numero_recibe)):
             print('SMS fallido: El receptor no esta diponible')
-        print(f"SMS enviado de {numero_emisor} a {numero_recibe}: {mensaje}")
-        self.registro_sms.append((numero_emisor, numero_recibe, mensaje))
+        print(f"SMS enviado de {numero_emisor} a {numero_recibe}: {mensaje} el {fecha}")
+        self.registro_sms.append((numero_emisor, numero_recibe, mensaje,fecha))
         
         celular_1 = self.dispositivos_registrados.get(numero_emisor)
         celular_2 = self.dispositivos_registrados.get(numero_recibe)
         
-        celular_1.mensajeria.enviar_sms(numero_recibe,mensaje)
-        celular_2.mensajeria.recibir_sms(numero_emisor,mensaje)
-        print('SMS enviadoooooooooooooooooooooooooooooo')    
+        celular_1.mensajeria.enviar_sms(numero_recibe,mensaje,fecha)
+        celular_2.mensajeria.recibir_sms(numero_emisor,mensaje,fecha)
+        print('SMS enviadoooooooooooooooooooooooooooooo')  
+        
+        
+    def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
+        for sms in self.registro_sms:
+            if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
+                self.registro_sms.remove(sms)
+                print(f"SMS de {numero_emisor} a {numero_recibe} eliminado.")
+                return
+        print("SMS no encontrado en el registro.")  
         
     
         

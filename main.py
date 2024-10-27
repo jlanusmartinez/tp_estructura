@@ -39,11 +39,13 @@ if __name__ == '__main__':
     # celular1.agregar_contacto_celular('franco','11111111')
     # celular1.agregar_contacto_celular('franco','11111111')
     # celular1.ver_contactos_celular()
-    central.llamada(1234,11111111,10)
-    celular1.telefono.imprimir_registro()    
-    central.llamada(29292929,1234,50)
+    # central.llamada(1234,11111111,10)
+    # celular1.telefono.imprimir_registro()    
+    # central.llamada(29292929,1234,50)
     celular1.telefono.imprimir_registro()
-    central.sms(1234,11111111,'hola')
+    central.enviar_sms(1234,11111111,'hola')
+    celular2.mensajeria.ver_bandeja_sms()
+    central.eliminar_sms(1234,11111111,'hola')
     celular2.mensajeria.ver_bandeja_sms()
     
     

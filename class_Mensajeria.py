@@ -46,18 +46,16 @@ class Mensajeria(Aplicacion):
             
 # #PARA ELIMINAR EL MENSAJE LE TENGO QUE PASAR EL NOMBRE DE MI AMIGO Y EL MENSAJE TEXTUAL --> ARREGLAR
 
-    def enviar_sms(self, numero_destino, mensaje):
-            mensaje_enviado = f"Enviado a {numero_destino}: {mensaje}"
+    def enviar_sms(self, numero_destino, mensaje,fecha):
+            mensaje_enviado = f"Enviado a {numero_destino}: {mensaje} el {fecha}"
             self.bandeja_sms.apilar(mensaje_enviado)
-            print(mensaje_enviado)
     
     
 
 
-    def recibir_sms(self, numero_destino, mensaje):
-            mensaje_recibido = f"Recibido de {numero_destino}: {mensaje}"
+    def recibir_sms(self, numero_destino, mensaje,fecha):
+            mensaje_recibido = f"Recibido de {numero_destino}: {mensaje} el {fecha}"
             self.bandeja_sms.apilar(mensaje_recibido)
-            print(mensaje_recibido)
 
     
     def ver_bandeja_sms(self):
