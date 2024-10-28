@@ -6,6 +6,8 @@ from class_Contactos import *
 from class_Mensajeria import *
 from class_Email import*
 from class_Telefono import*
+from class_Calculadora import*
+from class_Cronometro import*
 
 class Celular:
     def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
@@ -25,6 +27,8 @@ class Celular:
         self.contactos=Contactos()
         self.mensajeria=Mensajeria(self.numero_telefono)
         self.email=Email()
+        self.calculadora=Calculadora()
+        self.cronometro=Cronometro()
         self.configuracion = Configuracion(self.nombre,self.codigo_desbloqueo)
         self.tienda.descargada=True 
     
@@ -152,7 +156,33 @@ class Celular:
             print('Aplicacion:Contactos no descargada')
             
         
-            
+    def usar_calculadora(self, operacion, a, b):
+        """Accede a la calculadora, verificando el estado del celular."""
+        if self.encendido and not self.bloqueado:
+            if operacion == "sumar":
+                return self.calculadora.sumar(a, b)
+            elif operacion == "restar":
+                return self.calculadora.restar(a, b)
+            elif operacion == "multiplicar":
+                return self.calculadora.multiplicar(a, b)
+            elif operacion == "dividir":
+                return self.calculadora.dividir(a, b)
+            else:
+                print("Operación no válida.")
+        else:
+            print("El celular debe estar encendido y desbloqueado para usar la calculadora.")
+
+    def usar_cronometro(self, accion):
+        """Accede al cronómetro, verificando el estado del celular."""
+        if self.encendido and not self.bloqueado:
+            if accion == "iniciar":
+                self.cronometro.iniciar()
+            elif accion == "detener":
+                self.cronometro.detener()
+            else:
+                print("Acción no válida. Usa 'iniciar' o 'detener'.")
+        else:
+            print("El celular debe estar encendido y desbloqueado para usar el cronómetro.")           
     
     
         
