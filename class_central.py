@@ -110,7 +110,7 @@ class Central :
         
         celular_1.mensajeria.enviar_sms(numero_recibe,mensaje,fecha)
         celular_2.mensajeria.recibir_sms(numero_emisor,mensaje,fecha)
-        print('SMS enviadoooooooooooooooooooooooooooooo')  
+        print('SMS enviado.')  
         
         
     def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
