@@ -30,15 +30,11 @@ class Configuracion(Aplicacion):
 
 
     def cambiar_nombre(self, nombre_telefono):
-        if nombre_telefono:
             self.nombre = nombre_telefono
-            print("Código de desbloqueo configurado.")
-        else :
-            print("Código de desbloqueo configurado.")
+            print("Nombre de dispositivo configurado.")
+
 
     def cambiar_codigo(self,  codigo_desbloqueo):
-        if codigo_desbloqueo:
             self.codigo_desbloqueo = codigo_desbloqueo
             print("Código de desbloqueo configurado.")
-        else:
-            print("Código de desbloqueo configurado.")
+   

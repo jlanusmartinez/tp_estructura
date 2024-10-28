@@ -82,84 +82,213 @@ class Celular:
     #     else:
     #         print(f'App inexistente: {app}') 
     
+    
+    # Valida que la aplicacion esta descargada.
+    
     def validar_aplicacion(self, codigo):
         """Verifica si la aplicación está descargada."""
         return codigo in self.tienda.aplicaciones_descargadas
     
+    
+    
+    
+    
+    
+# Accede a los metodos de configuracion, verificando el estado del celular.
+
     def on_off_red_movil_celular(self):
-        if self.validar_aplicacion(5):
-            return self.configuracion.red_movil_activada
-        else: 
-            print('Aplicacion no descargada')
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(5):
+                return self.configuracion.red_movil_activada
+            else: 
+                print('Aplicacion no descargada')
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
     
     def on_off_datos_celular(self):
-        if self.validar_aplicacion(5):
-            return self.configuracion.datos_activados
-        else: 
-            print('Aplicacion no descargada')
-        
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(5):
+                return self.configuracion.datos_activados
+            else: 
+                print('Aplicacion no descargada')
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
     def nombre_dispositivo(self):
+      if self.encendido and not self.bloqueado:  
         return  self.configuracion.nombre_telefono
+      else:
+         print('El celular tiene que estar encendido y desploqueado') 
   
     def codigo_actual(self):
-            return self.configuracion.codigo_desbloqueo
+      if self.encendido and not self.bloqueado:  
+        return  self.configuracion.codigo_desbloqueo
+      else:
+         print('El celular tiene que estar encendido y desploqueado')
+         
+         
+         
+         
+# Accede a los metodos de Tienda, verificando el estado del celular.
         
     def descargar_app(self,codigo,nombre):
-        self.tienda.descargar_aplicacion(codigo,nombre)
+        if self.encendido and not self.bloqueado:
+            self.tienda.descargar_aplicacion(codigo,nombre)
+        else:
+          print('El celular tiene que estar encendido y desploqueado')  
     
     def mostrar_apps(self):
-        self.tienda.mostrar_aplicaciones()
+        if self.encendido and not self.bloqueado:
+            self.tienda.mostrar_aplicaciones()
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
     
     def eliminar_app(self,codigo):
-        self.tienda.eliminar_aplicacion(codigo)
+        if self.encendido and not self.bloqueado:
+            self.tienda.eliminar_aplicacion(codigo)
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
+            
+            
+            
+            
+            
+# Accede a los metodos de email, verificando el estado del celular.
     
     def recibir_email_celular(self, email_origen, mensaje, fecha=datetime.now().strftime("%d/%m/%Y %H:%M:%S")):
-        if self.validar_aplicacion(3):
-            self.email.recibir_email(email_origen, mensaje, fecha)
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(3):
+                self.email.recibir_email(email_origen, mensaje, fecha)
+            else:
+                print('Aplicacion: Email no descargada')
         else:
-            print('Aplicacion: Email no descargada')
-            
+           print('El celular tiene que estar encendido y desploqueado')
+           
+               
     def ver_emails_por_leidos_celular(self):
-        if self.validar_aplicacion(3):
-            self.email.ver_emails_por_leidos()
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(3):
+                self.email.ver_emails_por_leidos()
+            else:
+                print('Aplicacion: Email no descargada')
         else:
-            print('Aplicacion: Email no descargada')
+            print('El celular tiene que estar encendido y desploqueado')
     
     def ver_emails_por_fecha_celular(self):
-        if self.validar_aplicacion(3):
-            self.email.ver_emails_por_fecha()
-        else:
-            print('Aplicacion:Email no descargada')
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(3):
+                self.email.ver_emails_por_fecha()
+            else:
+                print('Aplicacion:Email no descargada')
+        print('El celular tiene que estar encendido y desploqueado')
+        
+        
+        
+
+# Accede a los metodos de contactos, verificando el estado del celular.
     
     def agregar_contacto_celular(self, nombre, numero):
-        if self.validar_aplicacion(1):
-            self.contactos.agregar_contacto(nombre, numero)
-        else:
-            print('Aplicacion:Contactos no descargada')
-    
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(1):
+                self.contactos.agregar_contacto(nombre, numero)
+            else:
+                print('Aplicacion:Contactos no descargada')
+        else :
+           print('El celular tiene que estar encendido y desploqueado')
+            
     def eliminar_contacto_celular(self, nombre):
-        if self.validar_aplicacion(1):
-            self.contactos.eliminar_contacto(nombre)
-        else:
-            print('Aplicacion:Contactos no descargada')
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(1):
+                self.contactos.eliminar_contacto(nombre)
+            else:
+                print('Aplicacion:Contactos no descargada')
+        else :
+           print('El celular tiene que estar encendido y desploqueado')
     
     def actualizar_contacto_celular(self, nombre, nuevo_nombre):
-        if self.validar_aplicacion(1):
-            self.contactos.actualizar_contacto(nombre, nuevo_nombre)
-        else:
-            print('Aplicacion:Contactos no descargada')
-        
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(1):
+                self.contactos.actualizar_contacto(nombre, nuevo_nombre)
+            else:
+                print('Aplicacion:Contactos no descargada')
+        else :
+           print('El celular tiene que estar encendido y desploqueado')
+           
     def ver_contactos_celular(self):
-        if self.validar_aplicacion(1):
-            self.contactos.ver_contactos()
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(1):
+                self.contactos.ver_contactos()
+            else:
+                print('Aplicacion:Contactos no descargada')
+        else :
+           print('El celular tiene que estar encendido y desploqueado')
+           
+           
+           
+           
+           
+ # Accede a los metodos de telefono, verificando el estado de celular.           
+           
+    def hacer_llamada(self,destino,duracion,hora):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(4):
+                self.telefono.llamada_realizada(self,destino,duracion,hora)
+            else:
+                print('Aplicacion:Telefono no descargada')
         else:
-            print('Aplicacion:Contactos no descargada')
-            
+            print('El celular tiene que estar encendido y desploqueado')
         
+    def imprimir_registro(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(4):              
+                self.telefono.imprimir_registro()
+            else: 
+                print('Aplicacion:Telefono no descargada')
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
+            
+            
+
+
+# Accede a los metodos de Mensajeria, verificando el estado de celular.
+   
+    def enviar_sms(self, numero_destino, mensaje,fecha):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(2):              
+                self.mensajeria.enviar_sms(numero_destino, mensaje,fecha)
+            else: 
+                print('Aplicacion:Mensajeria no descargada')
+        else:
+            print('El celular tiene que estar encendido y desploqueado')   
+    
+
+
+    def recibir_sms(self, numero_destino, mensaje,fecha):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(2):              
+                self.mensajeria.recibir_sms(numero_destino, mensaje,fecha)
+            else: 
+                print('Aplicacion:Mensajeria no descargada')
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
+
+    
+    def ver_bandeja_sms(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(2):              
+                self.mensajeria.ver_bandeja_sms()
+            else: 
+                print('Aplicacion:Mensajeria no descargada')
+        else:
+            print('El celular tiene que estar encendido y desploqueado')
+   
+   
+          
+               
+# Accede a la calculadora, verificando el estado del celular.       
     def usar_calculadora(self, operacion, a, b):
         """Accede a la calculadora, verificando el estado del celular."""
-        if self.validar_aplicacion(8):
-            if self.encendido and not self.bloqueado:
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(8):
                 if operacion == "sumar":
                     return self.calculadora.sumar(a, b)
                 elif operacion == "restar":
@@ -170,21 +299,29 @@ class Celular:
                     return self.calculadora.dividir(a, b)
                 else:
                     print("Operación no válida.")
-            else:
-                print("El celular debe estar encendido y desbloqueado para usar la calculadora.")
+            else: 
+                print('Aplicacion:Calculadora no descargada')
+        else:
+                print("El celular debe estar encendido y desbloqueado")
 
+
+
+
+
+# Accede al cronómetro, verificando el estado del celular.
     def usar_cronometro(self, accion):
-        """Accede al cronómetro, verificando el estado del celular."""
-        if self.validar_aplicacion(7):
-            if self.encendido and not self.bloqueado:
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(7):
                 if accion == "iniciar":
                     self.cronometro.iniciar()
                 elif accion == "detener":
                     self.cronometro.detener()
                 else:
                     print("Acción no válida. Usa 'iniciar' o 'detener'.")
-            else:
-                print("El celular debe estar encendido y desbloqueado para usar el cronómetro.")           
+            else: 
+                print('Aplicacion:Cronometro no descargada')
+        else:
+                print("El celular debe estar encendido y desbloqueado")           
     
     
         
