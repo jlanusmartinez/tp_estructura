@@ -9,7 +9,7 @@ class Cronometro(Aplicacion):
 
     def iniciar(self):
         """Inicia el cronómetro."""
-        if self.abierta:
+        if self.estado:
             self.iniciado = True
             self.tiempo_inicio = time.time()
             print("Cronómetro iniciado...")
@@ -18,7 +18,7 @@ class Cronometro(Aplicacion):
 
     def detener(self):
         """Detiene el cronómetro y muestra el tiempo transcurrido."""
-        if self.abierta:
+        if self.estado:
             if self.iniciado:
                 tiempo_transcurrido = time.time() - self.tiempo_inicio
                 self.iniciado = False

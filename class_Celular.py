@@ -158,31 +158,33 @@ class Celular:
         
     def usar_calculadora(self, operacion, a, b):
         """Accede a la calculadora, verificando el estado del celular."""
-        if self.encendido and not self.bloqueado:
-            if operacion == "sumar":
-                return self.calculadora.sumar(a, b)
-            elif operacion == "restar":
-                return self.calculadora.restar(a, b)
-            elif operacion == "multiplicar":
-                return self.calculadora.multiplicar(a, b)
-            elif operacion == "dividir":
-                return self.calculadora.dividir(a, b)
+        if self.validar_aplicacion(8):
+            if self.encendido and not self.bloqueado:
+                if operacion == "sumar":
+                    return self.calculadora.sumar(a, b)
+                elif operacion == "restar":
+                    return self.calculadora.restar(a, b)
+                elif operacion == "multiplicar":
+                    return self.calculadora.multiplicar(a, b)
+                elif operacion == "dividir":
+                    return self.calculadora.dividir(a, b)
+                else:
+                    print("Operación no válida.")
             else:
-                print("Operación no válida.")
-        else:
-            print("El celular debe estar encendido y desbloqueado para usar la calculadora.")
+                print("El celular debe estar encendido y desbloqueado para usar la calculadora.")
 
     def usar_cronometro(self, accion):
         """Accede al cronómetro, verificando el estado del celular."""
-        if self.encendido and not self.bloqueado:
-            if accion == "iniciar":
-                self.cronometro.iniciar()
-            elif accion == "detener":
-                self.cronometro.detener()
+        if self.validar_aplicacion(7):
+            if self.encendido and not self.bloqueado:
+                if accion == "iniciar":
+                    self.cronometro.iniciar()
+                elif accion == "detener":
+                    self.cronometro.detener()
+                else:
+                    print("Acción no válida. Usa 'iniciar' o 'detener'.")
             else:
-                print("Acción no válida. Usa 'iniciar' o 'detener'.")
-        else:
-            print("El celular debe estar encendido y desbloqueado para usar el cronómetro.")           
+                print("El celular debe estar encendido y desbloqueado para usar el cronómetro.")           
     
     
         
