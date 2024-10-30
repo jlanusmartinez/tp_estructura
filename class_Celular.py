@@ -10,7 +10,7 @@ from class_Calculadora import*
 from class_Cronometro import*
 
 class Celular:
-    def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
+    def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono,estado_aplicacion):
         self.id_unico = id_unico
         self.nombre = nombre
         self.codigo_desbloqueo=codigo_desbloqueo
@@ -31,6 +31,7 @@ class Celular:
         self.cronometro=Cronometro()
         self.configuracion = Configuracion(self.nombre,self.codigo_desbloqueo)
         self.tienda.descargada=True 
+        self.estado_aplicacion=False
     
     def __str__(self):
         return (f"Celular(ID: {self.id_unico}, Nombre: {self.nombre}, Modelo: {self.modelo}, "
@@ -57,9 +58,18 @@ class Celular:
         self.bloqueado = True
         print("El telefono esta bloqueado.")
 
-    def desbloquear_celular(self):
-        self.bloqueado = False
+    def desbloquear_celular(self,codigo):
+        if self.codigo_desbloqueo == codigo:
+            self.bloqueado = False
         print("El telefono esta desbloqueado.")
+    """
+    Desbloquea el teléfono si el código proporcionado coincide con el código de desbloqueo.
+
+    Args:
+        codigo: El código que se debe verificar para desbloquear el teléfono.
+
+    """
+        
 
     #def abrir_aplicacion(self, aplicacion):
     #    if aplicacion in self.aplicaciones and self.encendido:
@@ -153,6 +163,34 @@ class Celular:
             
             
 # Accede a los metodos de email, verificando el estado del celular.
+
+    def abrir_email(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(3):
+                if not self.estado_aplicacion
+                    self.email.abrir()
+                    self.estado_aplicacion = True
+                    print('App Email abierta.')
+                else:
+                    print('Ya estas usando otra app! No puedes usar Email')
+            else: 
+                print('Aplicacion:Email no descargada')
+        else:
+            print("El celular debe estar encendido y desbloqueado")
+    
+    def cerrar_email(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(3):
+                if self.estado_aplicacion:
+                    self.email.cerrar()
+                    self.estado_aplicacion = False
+                    print('App Email cerrada.')
+                else:
+                    print('Email no esta abierta! No puedes cerrar Email')
+            else: 
+                print('Aplicacion:Email no descargada')
+        else:
+            print("El celular debe estar encendido y desbloqueado")
     
     def recibir_email_celular(self, email_origen, mensaje, fecha=datetime.now().strftime("%d/%m/%Y %H:%M:%S")):
         if self.encendido and not self.bloqueado:
@@ -161,7 +199,7 @@ class Celular:
             else:
                 print('Aplicacion: Email no descargada')
         else:
-           print('El celular tiene que estar encendido y desploqueado')
+           print('El celular tiene que estar encendido y desbloqueado')
            
                
     def ver_emails_por_leidos_celular(self):
@@ -185,6 +223,54 @@ class Celular:
         
 
 # Accede a los metodos de contactos, verificando el estado del celular.
+
+    # def abrir_contactos(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(1):
+    #             self.contactos.abrir()
+    #             print('App Contactos abierta.')
+    #         else: 
+    #             print('Aplicacion:Contactos no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    # def cerrar_contactos(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(1):
+    #             self.contactos.cerrar()
+    #             print('App Contactos cerrada.')
+    #         else: 
+    #             print('Aplicacion:Contacto no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    def abrir_contactos(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(1):
+                if not self.estado_aplicacion:  # Validación añadida
+                    self.contactos.abrir()
+                    self.estado_aplicacion = True  # Asigna el estado
+                    print('App Contactos abierta.')
+                else:
+                    print('Ya estás usando otra app! No puedes usar Contactos.')
+            else: 
+                print('Aplicación: Contactos no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+    
+    def cerrar_contactos(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(1):
+                if self.estado_aplicacion:  # Validación añadida
+                    self.contactos.cerrar()
+                    self.estado_aplicacion = False  # Asigna el estado
+                    print('App Contactos cerrada.')
+                else:
+                    print('Contactos no está abierta! No puedes cerrar Contactos.')
+            else: 
+                print('Aplicación: Contactos no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
     
     def agregar_contacto_celular(self, nombre, numero):
         if self.encendido and not self.bloqueado:
@@ -226,7 +312,56 @@ class Celular:
            
            
            
- # Accede a los metodos de telefono, verificando el estado de celular.           
+ # Accede a los metodos de telefono, verificando el estado de celular.    
+ 
+    # def abrir_telefono(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(4):
+    #             self.telefono.abrir()
+    #             print('App Telefono abierta.')
+    #         else: 
+    #             print('Aplicacion:Telefono no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    # def cerrar_telefono(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(4):
+    #             self.telefono.cerrar()
+    #             print('App Telefono cerrada.')
+    #         else: 
+    #             print('Aplicacion:Telefono no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")     
+    
+    def abrir_telefono(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(4):
+                if not self.estado_aplicacion:  # Validación añadida
+                    self.telefono.abrir()
+                    self.estado_aplicacion = True  # Asigna el estado
+                    print('App Telefono abierta.')
+                else:
+                    print('Ya estás usando otra app! No puedes usar Teléfono.')
+            else: 
+                print('Aplicación: Teléfono no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+    def cerrar_telefono(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(4):
+                if self.estado_aplicacion:  # Validación añadida
+                    self.telefono.cerrar()
+                    self.estado_aplicacion = False  # Asigna el estado
+                    print('App Telefono cerrada.')
+                else:
+                    print('Teléfono no está abierto! No puedes cerrar Teléfono.')
+            else: 
+                print('Aplicación: Teléfono no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+  
            
     def hacer_llamada(self,destino,duracion,hora):
         if self.encendido and not self.bloqueado:
@@ -251,6 +386,55 @@ class Celular:
 
 # Accede a los metodos de Mensajeria, verificando el estado de celular.
    
+    # def abrir_mensajeria(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(2):
+    #             self.mensajeria.abrir()
+    #             print('App Mensajeria abierta.')
+    #         else: 
+    #             print('Aplicacion:Mensajeria no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    # def cerrar_mensajeria(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(2):
+    #             self.mensajeria.cerrar()
+    #             print('App Mensajeria cerrada.')
+    #         else: 
+    #             print('Aplicacion:Mensajeria no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    def abrir_mensajeria(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(2):
+                if not self.estado_aplicacion:  # Validación añadida
+                    self.mensajeria.abrir()
+                    self.estado_aplicacion = True  # Asigna el estado
+                    print('App Mensajería abierta.')
+                else:
+                    print('Ya estás usando otra app! No puedes usar Mensajería.')
+            else: 
+                print('Aplicación: Mensajería no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+    def cerrar_mensajeria(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(2):
+                if self.estado_aplicacion:  # Validación añadida
+                    self.mensajeria.cerrar()
+                    self.estado_aplicacion = False  # Asigna el estado
+                    print('App Mensajería cerrada.')
+                else:
+                    print('Mensajería no está abierta! No puedes cerrar Mensajería.')
+            else: 
+                print('Aplicación: Mensajería no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+            
     def enviar_sms(self, numero_destino, mensaje,fecha):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(2):              
@@ -286,25 +470,54 @@ class Celular:
                
 # Accede a la calculadora, verificando el estado del celular.  
 
+    # def abrir_calculadora(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(8):
+    #             self.calculadora.abrir()
+    #             print('App Calculadora abierta.')
+    #         else: 
+    #             print('Aplicacion:Calculadora no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    # def cerrar_calculadora(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(8):
+    #             self.calculadora.cerrar()
+    #             print('App Calculadora cerrada.')
+    #         else: 
+    #             print('Aplicacion:Calculadora no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
     def abrir_calculadora(self):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(8):
-                self.calculadora.abrir()
-                print('App Calculadora abierta.')
+                if not self.estado_aplicacion:  # Validación añadida
+                    self.calculadora.abrir()
+                    self.estado_aplicacion = True  # Asigna el estado
+                    print('App Calculadora abierta.')
+                else:
+                    print('Ya estás usando otra app! No puedes usar Calculadora.')
             else: 
-                print('Aplicacion:Calculadora no descargada')
+                print('Aplicación: Calculadora no descargada.')
         else:
-            print("El celular debe estar encendido y desbloqueado")
-    
+            print("El celular debe estar encendido y desbloqueado.")
+
     def cerrar_calculadora(self):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(8):
-                self.calculadora.cerrar()
-                print('App Calculadora cerrada.')
+                if self.estado_aplicacion:  # Validación añadida
+                    self.calculadora.cerrar()
+                    self.estado_aplicacion = False  # Asigna el estado
+                    print('App Calculadora cerrada.')
+                else:
+                    print('Calculadora no está abierta! No puedes cerrar Calculadora.')
             else: 
-                print('Aplicacion:Calculadora no descargada')
+                print('Aplicación: Calculadora no descargada.')
         else:
-            print("El celular debe estar encendido y desbloqueado")
+            print("El celular debe estar encendido y desbloqueado.")
+
              
     def usar_calculadora(self, operacion, a, b):
         """Accede a la calculadora, verificando el estado del celular."""
@@ -331,6 +544,56 @@ class Celular:
 
 # Accede al cronómetro, verificando el estado del celular.
 
+
+    # def abrir_cronometro(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(7):
+    #             self.cronometro.abrir()
+    #             print('App Cronometro abierta.')
+    #         else: 
+    #             print('Aplicacion:Cronometro no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    # def cerrar_cronometro(self):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(7):
+    #             self.cronometro.cerrar()
+    #             print('App Cronometro cerrada.')
+    #         else: 
+    #             print('Aplicacion:Cronometro no descargada')
+    #     else:
+    #         print("El celular debe estar encendido y desbloqueado")
+    
+    def abrir_cronometro(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(7):
+                if not self.estado_aplicacion:  # Validación añadida
+                    self.cronometro.abrir()
+                    self.estado_aplicacion = True  # Asigna el estado
+                    print('App Cronómetro abierta.')
+                else:
+                    print('Ya estás usando otra app! No puedes usar Cronómetro.')
+            else: 
+                print('Aplicación: Cronómetro no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+    def cerrar_cronometro(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(7):
+                if self.estado_aplicacion:  # Validación añadida
+                    self.cronometro.cerrar()
+                    self.estado_aplicacion = False  # Asigna el estado
+                    print('App Cronómetro cerrada.')
+                else:
+                    print('Cronómetro no está abierto! No puedes cerrar Cronómetro.')
+            else: 
+                print('Aplicación: Cronómetro no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+    
     def usar_cronometro(self, accion):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(7):
