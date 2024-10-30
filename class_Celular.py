@@ -61,12 +61,12 @@ class Celular:
         self.bloqueado = False
         print("El telefono esta desbloqueado.")
 
-    def abrir_aplicacion(self, aplicacion):
-        if aplicacion in self.aplicaciones and self.encendido:
-            print(f"Abriendo {aplicacion}...")
-            # Logica de interaccion segun la aplicacion
-        else:
-            print("No se puede abrir la aplicacion.")
+    #def abrir_aplicacion(self, aplicacion):
+    #    if aplicacion in self.aplicaciones and self.encendido:
+    #        print(f"Abriendo {aplicacion}...")
+    #        # Logica de interaccion segun la aplicacion
+    #    else:
+    #        print("No se puede abrir la aplicacion.")
             
     # def instalar_app(self,app:Aplicacion):
     #     if app not in Tienda.apps and app not in self.aplicaciones_descargadas:
@@ -89,7 +89,7 @@ class Celular:
         """Verifica si la aplicación está descargada."""
         return codigo in self.tienda.aplicaciones_descargadas
     
-    
+
     
     
     
@@ -284,7 +284,28 @@ class Celular:
    
           
                
-# Accede a la calculadora, verificando el estado del celular.       
+# Accede a la calculadora, verificando el estado del celular.  
+
+    def abrir_calculadora(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(8):
+                self.calculadora.abrir()
+                print('App Calculadora abierta.')
+            else: 
+                print('Aplicacion:Calculadora no descargada')
+        else:
+            print("El celular debe estar encendido y desbloqueado")
+    
+    def cerrar_calculadora(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(8):
+                self.calculadora.cerrar()
+                print('App Calculadora cerrada.')
+            else: 
+                print('Aplicacion:Calculadora no descargada')
+        else:
+            print("El celular debe estar encendido y desbloqueado")
+             
     def usar_calculadora(self, operacion, a, b):
         """Accede a la calculadora, verificando el estado del celular."""
         if self.encendido and not self.bloqueado:
@@ -309,6 +330,7 @@ class Celular:
 
 
 # Accede al cronómetro, verificando el estado del celular.
+
     def usar_cronometro(self, accion):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(7):

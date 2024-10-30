@@ -8,11 +8,9 @@ class Aplicacion:
         
 
     def abrir(self):
-        if self.descargada==True:
             self.estado = True
             print(f"Abriendo {self.nombre}.")
-        else:
-            print('Aplicacion no descargada')
+
 
     def cerrar(self):
         if self.estado:
