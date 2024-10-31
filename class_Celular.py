@@ -10,7 +10,7 @@ from class_Calculadora import*
 from class_Cronometro import*
 
 class Celular:
-    def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono,estado_aplicacion):
+    def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
         self.id_unico = id_unico
         self.nombre = nombre
         self.codigo_desbloqueo=codigo_desbloqueo
@@ -113,7 +113,7 @@ class Celular:
             else: 
                 print('Aplicacion no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
     
     def on_off_datos_celular(self):
         if self.encendido and not self.bloqueado:
@@ -122,18 +122,18 @@ class Celular:
             else: 
                 print('Aplicacion no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
     def nombre_dispositivo(self):
       if self.encendido and not self.bloqueado:  
         return  self.configuracion.nombre_telefono
       else:
-         print('El celular tiene que estar encendido y desploqueado') 
+         print('El celular tiene que estar encendido y desbloqueado') 
   
     def codigo_actual(self):
       if self.encendido and not self.bloqueado:  
         return  self.configuracion.codigo_desbloqueo
       else:
-         print('El celular tiene que estar encendido y desploqueado')
+         print('El celular tiene que estar encendido y desbloqueado')
          
          
          
@@ -144,19 +144,19 @@ class Celular:
         if self.encendido and not self.bloqueado:
             self.tienda.descargar_aplicacion(codigo,nombre)
         else:
-          print('El celular tiene que estar encendido y desploqueado')  
+          print('El celular tiene que estar encendido y desbloqueado')  
     
     def mostrar_apps(self):
         if self.encendido and not self.bloqueado:
             self.tienda.mostrar_aplicaciones()
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
     
     def eliminar_app(self,codigo):
         if self.encendido and not self.bloqueado:
             self.tienda.eliminar_aplicacion(codigo)
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
             
             
             
@@ -167,7 +167,7 @@ class Celular:
     def abrir_email(self):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(3):
-                if not self.estado_aplicacion
+                if not self.estado_aplicacion:
                     self.email.abrir()
                     self.estado_aplicacion = True
                     print('App Email abierta.')
@@ -209,7 +209,7 @@ class Celular:
             else:
                 print('Aplicacion: Email no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
     
     def ver_emails_por_fecha_celular(self):
         if self.encendido and not self.bloqueado:
@@ -217,7 +217,7 @@ class Celular:
                 self.email.ver_emails_por_fecha()
             else:
                 print('Aplicacion:Email no descargada')
-        print('El celular tiene que estar encendido y desploqueado')
+        print('El celular tiene que estar encendido y desbloqueado')
         
         
         
@@ -279,7 +279,7 @@ class Celular:
             else:
                 print('Aplicacion:Contactos no descargada')
         else :
-           print('El celular tiene que estar encendido y desploqueado')
+           print('El celular tiene que estar encendido y desbloqueado')
             
     def eliminar_contacto_celular(self, nombre):
         if self.encendido and not self.bloqueado:
@@ -288,7 +288,7 @@ class Celular:
             else:
                 print('Aplicacion:Contactos no descargada')
         else :
-           print('El celular tiene que estar encendido y desploqueado')
+           print('El celular tiene que estar encendido y desbloqueado')
     
     def actualizar_contacto_celular(self, nombre, nuevo_nombre):
         if self.encendido and not self.bloqueado:
@@ -297,7 +297,7 @@ class Celular:
             else:
                 print('Aplicacion:Contactos no descargada')
         else :
-           print('El celular tiene que estar encendido y desploqueado')
+           print('El celular tiene que estar encendido y desbloqueado')
            
     def ver_contactos_celular(self):
         if self.encendido and not self.bloqueado:
@@ -306,7 +306,7 @@ class Celular:
             else:
                 print('Aplicacion:Contactos no descargada')
         else :
-           print('El celular tiene que estar encendido y desploqueado')
+           print('El celular tiene que estar encendido y desbloqueado')
            
            
            
@@ -370,7 +370,7 @@ class Celular:
             else:
                 print('Aplicacion:Telefono no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
         
     def imprimir_registro(self):
         if self.encendido and not self.bloqueado:
@@ -379,7 +379,7 @@ class Celular:
             else: 
                 print('Aplicacion:Telefono no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
             
             
 
@@ -442,7 +442,7 @@ class Celular:
             else: 
                 print('Aplicacion:Mensajeria no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')   
+            print('El celular tiene que estar encendido y desbloqueado')   
     
 
 
@@ -453,7 +453,7 @@ class Celular:
             else: 
                 print('Aplicacion:Mensajeria no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
 
     
     def ver_bandeja_sms(self):
@@ -463,7 +463,7 @@ class Celular:
             else: 
                 print('Aplicacion:Mensajeria no descargada')
         else:
-            print('El celular tiene que estar encendido y desploqueado')
+            print('El celular tiene que estar encendido y desbloqueado')
    
    
           

@@ -73,3 +73,24 @@ class Mensajeria(Aplicacion):
                 for mensaje in mensajes:
                     self.bandeja_sms.apilar(mensaje)
     
+    def eliminar_sms(self, numero_destino, mensaje):
+        mensajes_temp = []
+        mensaje_eliminado = False
+
+        # Desapilar los mensajes hasta encontrar el que se quiere eliminar
+        while not self.bandeja_sms.esta_vacia():
+            sms = self.bandeja_sms.desapilar()
+            if sms == f"Enviado a {numero_destino}: {mensaje}":
+                mensaje_eliminado = True
+                print(f"SMS de {numero_destino} eliminado.")
+                break  # Salimos del bucle una vez encontrado el mensaje
+            else:
+                mensajes_temp.append(sms)  # Guardamos el mensaje en la lista temporal
+
+        # Volver a apilar los mensajes que no se eliminaron
+        for sms in mensajes_temp:
+            self.bandeja_sms.apilar(sms)
+
+        if not mensaje_eliminado:
+            print("SMS no encontrado en la bandeja.")
+    
