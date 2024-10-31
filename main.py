@@ -81,28 +81,37 @@ if __name__ == '__main__':
     # celular1.mostrar_apps()
     
     
-    
+    celular1.abrir_tienda()
     celular1.descargar_app(1,'Contactos')
+    celular1.cerrar_tienda()
+    celular1.abrir_contactos()
+    
+    celular1.abrir_contactos()
+    
     celular1.agregar_contacto_celular('franco','11111111')
+    
+    celular1.cerrar_contactos()
+    celular1.descargar_app(2,'Mensajeria')    
+    celular1.abrir_mensajeria()
     # celular1.ver_contactos_celular()
     # central.llamada(1234,11111111,10)
     # celular1.telefono.imprimir_registro()    
     # central.llamada(29292929,1234,50)
     central.enviar_sms(1129999999,11111111,'hola')
     
-    celular2.descargar_app(2,'Mensajeria')
+    # celular2.descargar_app(2,'Mensajeria')
     
-    celular2.ver_bandeja_sms()
+    # celular2.ver_bandeja_sms()
     
-    celular1.descargar_app(2,'Mesnajeria')    
+   
     
-    celular1.ver_bandeja_sms()
+    # celular1.ver_bandeja_sms()
     
-    central.eliminar_sms(1129999999,11111111,'hola')
+    # central.eliminar_sms(1129999999,11111111,'hola')
     
-    celular2.ver_bandeja_sms()
+    # celular2.ver_bandeja_sms()
     
-    celular1.ver_bandeja_sms()
+    # celular1.ver_bandeja_sms()
     
     
     

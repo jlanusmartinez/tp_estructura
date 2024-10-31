@@ -92,7 +92,7 @@ class Central :
             return
         
         # Si ambos están disponibles, registrar la llamada
-        celular_1.telefono.llamada_realizada(numero_recibe, duracion, datetime.now())
+        celular_1.hacer_llamada(numero_recibe, duracion, datetime.now())
         print(f"Llamada conectada entre {numero_emisor} y {numero_recibe}.")
         self.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", datetime.now()))
     
@@ -109,59 +109,11 @@ class Central :
         celular_1 = self.dispositivos_registrados.get(numero_emisor)
         celular_2 = self.dispositivos_registrados.get(numero_recibe)
         
-        celular_1.mensajeria.enviar_sms(numero_recibe,mensaje,fecha)
-        celular_2.mensajeria.recibir_sms(numero_emisor,mensaje,fecha)
+        celular_1.enviar_sms(numero_recibe,mensaje,fecha)
+        celular_2.recibir_sms(numero_emisor,mensaje,fecha)
         print('SMS enviado.')  
         
         
-<<<<<<< Updated upstream
-    # def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
-    #     for sms in self.registro_sms:
-    #         if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
-    #             self.registro_sms.remove(sms)
-    #             print(f"SMS de {numero_emisor} a {numero_recibe} eliminado.")
-    #             return
-    #     print("SMS no encontrado en el registro.")  
-    
-    # def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
-    #     sms_eliminados = []
-
-    #     for sms in self.registro_sms:
-    #         if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
-    #             sms_eliminados.append(sms)
-        
-    #     if not sms_eliminados:
-    #         print("SMS no encontrado en el registro.")
-    #         return
-        
-    #     for sms in sms_eliminados:
-    #         self.registro_sms.remove(sms)
-        
-    #     print(f"SMS de {numero_emisor} a {numero_recibe} eliminado.")
-
-    #     # Eliminando el mensaje en ambos celulares
-    #     celular_1 = self.dispositivos_registrados.get(numero_emisor)
-    #     celular_2 = self.dispositivos_registrados.get(numero_recibe)
-        
-    #     if celular_1:
-    #         celular_1.mensajeria.eliminar_sms(numero_recibe, mensaje)
-        
-    #     if celular_2:
-    #         celular_2.mensajeria.eliminar_sms(numero_emisor, mensaje)
-    
-    def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
-        celular_emisor = self.dispositivos_registrados.get(numero_emisor)
-
-        if celular_emisor:
-            celular_emisor.mensajeria.eliminar_sms(numero_recibe, mensaje)
-        else:
-            print("El emisor no está registrado.")
-
-
-
-
-        
-=======
     def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
         for sms in self.registro_sms:
             if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
@@ -171,7 +123,6 @@ class Central :
         print("SMS no encontrado en el registro.")  
         
 
->>>>>>> Stashed changes
         
     
         
