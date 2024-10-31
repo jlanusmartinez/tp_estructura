@@ -82,7 +82,6 @@ if __name__ == '__main__':
     
     
     
-    
     celular1.descargar_app(1,'Contactos')
     celular1.agregar_contacto_celular('franco','11111111')
     # celular1.ver_contactos_celular()
@@ -91,12 +90,22 @@ if __name__ == '__main__':
     # central.llamada(29292929,1234,50)
     central.enviar_sms(1129999999,11111111,'hola')
     
+    celular2.descargar_app(2,'Mensajeria')
     
-    celular1.mensajeria.ver_bandeja_sms()
+    celular2.ver_bandeja_sms()
     
-    # central.eliminar_sms(1129999999,11111111,'hola')
+    celular1.descargar_app(2,'Mesnajeria')    
     
-    celular2.mensajeria.ver_bandeja_sms()
+    celular1.ver_bandeja_sms()
+    
+    central.eliminar_sms(1129999999,11111111,'hola')
+    
+    celular2.ver_bandeja_sms()
+    
+    celular1.ver_bandeja_sms()
+    
+    
+    
     
 
 

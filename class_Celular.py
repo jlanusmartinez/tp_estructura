@@ -464,6 +464,15 @@ class Celular:
                 print('Aplicacion:Mensajeria no descargada')
         else:
             print('El celular tiene que estar encendido y desbloqueado')
+    
+    def eliminar_sms(self, numero_destino, mensaje):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(2):              
+                self.mensajeria.eliminar_sms(numero_destino, mensaje)
+            else: 
+                print('Aplicacion:Mensajeria no descargada')
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')
    
    
           
