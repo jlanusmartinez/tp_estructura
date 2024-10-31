@@ -10,7 +10,7 @@ class Calculadora(Aplicacion):
             print(f"Resultado de {a} + {b} = {resultado}")
             return resultado
         else:
-            print("La aplicación Calculadora no está abierta.")
+            print("La aplicacion Calculadora no esta abierta.")
     
     def restar(self, a, b):
         if self.estado:
@@ -18,7 +18,7 @@ class Calculadora(Aplicacion):
             print(f"Resultado de {a} - {b} = {resultado}")
             return resultado
         else:
-            print("La aplicación Calculadora no está abierta.")
+            print("La aplicacion Calculadora no esta abierta.")
     
     def multiplicar(self, a, b):
         if self.estado:
@@ -26,7 +26,7 @@ class Calculadora(Aplicacion):
             print(f"Resultado de {a} * {b} = {resultado}")
             return resultado
         else:
-            print("La aplicación Calculadora no está abierta.")
+            print("La aplicacion Calculadora no esta abierta.")
     
     def dividir(self, a, b):
         if self.estado:
@@ -37,4 +37,4 @@ class Calculadora(Aplicacion):
             print(f"Resultado de {a} / {b} = {resultado}")
             return resultado
         else:
-            print("La aplicación Calculadora no está abierta.")
+            print("La aplicacion Calculadora no esta abierta.")

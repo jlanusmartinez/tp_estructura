@@ -111,9 +111,10 @@ class Central :
         
         celular_1.mensajeria.enviar_sms(numero_recibe,mensaje,fecha)
         celular_2.mensajeria.recibir_sms(numero_emisor,mensaje,fecha)
-    
+        print('SMS enviado.')  
         
         
+<<<<<<< Updated upstream
     # def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
     #     for sms in self.registro_sms:
     #         if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
@@ -160,6 +161,17 @@ class Central :
 
 
         
+=======
+    def eliminar_sms(self, numero_emisor, numero_recibe, mensaje):
+        for sms in self.registro_sms:
+            if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
+                self.registro_sms.remove(sms)
+                print(f"SMS de {numero_emisor} a {numero_recibe} eliminado.")
+                return
+        print("SMS no encontrado en el registro.")  
+        
+
+>>>>>>> Stashed changes
         
     
         
