@@ -11,10 +11,15 @@ from class_Cronometro import*
 from validaciones import *
 
 class Celular:
+    ids_unicos_usados=[]
     def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
+        if not validar_numero_telefono(numero_telefono):
+            raise ValueError('El numero de telefono debe tener 10 digitos')
         if not validar_codigo_telefono(codigo_desbloqueo):
             raise ValueError('El codigo debe ser de 4 digitos')
-        
+        if not validar_id_unico(id_unico, self.ids_unicos_usados):
+            raise ValueError('El id_unico debe ser unico')
+        self.ids_unicos_usados.add(id_unico)
         self.id_unico = id_unico
         self.nombre = nombre
         self.codigo_desbloqueo=codigo_desbloqueo
@@ -37,6 +42,7 @@ class Celular:
         self.tienda.descargada=True 
         self.configuracion.descargada=True
         self.estado_aplicacion=False
+        
     
     def __str__(self):
         return (f"Celular(ID: {self.id_unico}, Nombre: {self.nombre}, Modelo: {self.modelo}, "
@@ -63,7 +69,7 @@ class Celular:
         self.bloqueado = True
         print("El telefono esta bloqueado.")
 
-    #Desbloquea el telefono si el codigo proporcionado coincide con el codigo de desbloque
+    #Desbloquea el telefono si el codigo proporcionado coincide con el codigo de desbloqueo
     def desbloquear_celular(self,codigo):
         if self.codigo_desbloqueo == codigo:
             self.bloqueado = False
@@ -76,7 +82,7 @@ class Celular:
     # Valida que la aplicacion esta descargada.
     
     def validar_aplicacion(self, codigo):
-        """Verifica si la aplicación está descargada."""
+        """Verifica si la aplicacion esta descargada."""
         return codigo in self.tienda.aplicaciones_descargadas
     
 
@@ -147,7 +153,21 @@ class Celular:
           else:
               print('Aplicacion cerrada.')
       else:
-         print('El celular tiene que estar encendido y desbloqueado')    
+         print('El celular tiene que estar encendido y desbloqueado')
+         
+    def estado_red_movil(self):
+        if self.encendido and not self.bloqueado:
+                return self.configuracion.red_movil_activada
+
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')
+            
+    def estado_datos(self):
+            if self.encendido and not self.bloqueado:
+                    return self.configuracion.datos_activados
+
+            else:
+                print('El celular tiene que estar encendido y desbloqueado')    
          
          
          

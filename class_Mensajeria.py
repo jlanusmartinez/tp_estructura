@@ -22,7 +22,7 @@ class Mensajeria(Aplicacion):
     
     def ver_bandeja_sms(self):
             if self.bandeja_sms.esta_vacia():
-                print("La bandeja de SMS está vacía.")
+                print("La bandeja de SMS esta vacia.")
             else:
                 print(f"Bandeja de SMS de {self.numero_telefono}:")
                 mensajes = []
