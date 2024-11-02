@@ -8,9 +8,13 @@ from class_Email import*
 from class_Telefono import*
 from class_Calculadora import*
 from class_Cronometro import*
+from validaciones import *
 
 class Celular:
     def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
+        if not validar_codigo_telefono(codigo_desbloqueo):
+            raise ValueError('El codigo debe ser de 4 digitos')
+        
         self.id_unico = id_unico
         self.nombre = nombre
         self.codigo_desbloqueo=codigo_desbloqueo
@@ -67,27 +71,6 @@ class Celular:
     
     
         
-
-    #def abrir_aplicacion(self, aplicacion):
-    #    if aplicacion in self.aplicaciones and self.encendido:
-    #        print(f"Abriendo {aplicacion}...")
-    #        # Logica de interaccion segun la aplicacion
-    #    else:
-    #        print("No se puede abrir la aplicacion.")
-            
-    # def instalar_app(self,app:Aplicacion):
-    #     if app not in Tienda.apps and app not in self.aplicaciones_descargadas:
-    #         print(f'App inexistente: {app}')
-    #     else:
-    #         self.aplicaciones_descargadas.append(app)
-    #         print('Aplicacion descargada correctamemte')
-    
-    # def desinstalar_app(self,app:Aplicacion):
-    #     if app in self.aplicaciones_descargadas:
-    #         self.aplicaciones_descargadas.remove(app)
-    #         print('Aplicacion desinstalada correctamente')
-    #     else:
-    #         print(f'App inexistente: {app}') 
     
     
     # Valida que la aplicacion esta descargada.
@@ -510,19 +493,7 @@ class Celular:
         else:
             print('El celular tiene que estar encendido y desbloqueado')
     
-
-   
-    # def eliminar_sms(self, numero_destino, mensaje):
-    #     if self.encendido and not self.bloqueado:
-    #         if self.validar_aplicacion(2):        
-    #             if self.mensajeria.estado:      
-    #                 self.mensajeria.eliminar_sms(numero_destino, mensaje)
-    #             else:
-    #                 print('Aplicacion no abierta')
-    #         else: 
-    #             print('Aplicacion:Mensajeria no descargada')
-    #     else:
-    #         print('El celular tiene que estar encendido y desbloqueado')       
+     
   
           
                
@@ -585,25 +556,6 @@ class Celular:
 # Accede al cronometro, verificando el estado del celular.
 
 
-    # def abrir_cronometro(self):
-    #     if self.encendido and not self.bloqueado:
-    #         if self.validar_aplicacion(7):
-    #             self.cronometro.abrir()
-    #             print('App Cronometro abierta.')
-    #         else: 
-    #             print('Aplicacion:Cronometro no descargada')
-    #     else:
-    #         print("El celular debe estar encendido y desbloqueado")
-    
-    # def cerrar_cronometro(self):
-    #     if self.encendido and not self.bloqueado:
-    #         if self.validar_aplicacion(7):
-    #             self.cronometro.cerrar()
-    #             print('App Cronometro cerrada.')
-    #         else: 
-    #             print('Aplicacion:Cronometro no descargada')
-    #     else:
-    #         print("El celular debe estar encendido y desbloqueado")
     
     def abrir_cronometro(self):
         if self.encendido and not self.bloqueado:

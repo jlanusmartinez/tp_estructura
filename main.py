@@ -136,6 +136,8 @@ if __name__ == '__main__':
     celular1.ver_bandeja_sms()
     celular2.ver_bandeja_sms()
     
+    
+    
     #Hasta aca todo ok
     
     
