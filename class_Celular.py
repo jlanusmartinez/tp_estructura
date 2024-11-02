@@ -492,12 +492,13 @@ class Celular:
                 else:
                     print('Aplicacion no abierta')
             else: 
-                print('Aplicacion:Mensajeria no descargada')
+                print('Aplicacion: El contacto al cual quieres mandar un mensaje no descargo mensajeria')
         else:
             print('El celular tiene que estar encendido y desbloqueado')
 
     
     def ver_bandeja_sms(self):
+        
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(2):        
                 if self.mensajeria.estado:      
@@ -511,17 +512,17 @@ class Celular:
     
 
    
-    def eliminar_sms(self, numero_destino, mensaje):
-        if self.encendido and not self.bloqueado:
-            if self.validar_aplicacion(2):        
-                if self.mensajeria.estado:      
-                    self.mensajeria.eliminar_sms(numero_destino, mensaje)
-                else:
-                    print('Aplicacion no abierta')
-            else: 
-                print('Aplicacion:Mensajeria no descargada')
-        else:
-            print('El celular tiene que estar encendido y desbloqueado')       
+    # def eliminar_sms(self, numero_destino, mensaje):
+    #     if self.encendido and not self.bloqueado:
+    #         if self.validar_aplicacion(2):        
+    #             if self.mensajeria.estado:      
+    #                 self.mensajeria.eliminar_sms(numero_destino, mensaje)
+    #             else:
+    #                 print('Aplicacion no abierta')
+    #         else: 
+    #             print('Aplicacion:Mensajeria no descargada')
+    #     else:
+    #         print('El celular tiene que estar encendido y desbloqueado')       
   
           
                

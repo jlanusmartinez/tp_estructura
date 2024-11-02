@@ -24,12 +24,12 @@ class Mensajeria(Aplicacion):
             if self.bandeja_sms.esta_vacia():
                 print("La bandeja de SMS está vacía.")
             else:
-                print("Bandeja de SMS:")
+                print(f"Bandeja de SMS de {self.numero_telefono}:")
                 mensajes = []
                 while not self.bandeja_sms.esta_vacia():
                     mensaje = self.bandeja_sms.desapilar()
                     mensajes.append(mensaje)
-                    print(mensaje[0], mensaje[1])
+                    print(mensaje[0] + mensaje[1])
                 
                 # Reapilar los mensajes para mantener la pila original
                 for mensaje in mensajes:
@@ -46,7 +46,7 @@ class Mensajeria(Aplicacion):
             sms = self.bandeja_sms.desapilar()
             if sms[0] == mensaje_a_eliminar:
                 mensaje_eliminado = True
-                print(f"SMS de {numero_destino} eliminado.")
+                print(f"SMS enviado a {numero_destino} eliminado.")
                 break  # Salimos del bucle una vez encontrado el mensaje
             else:
                 mensajes_temp.append(sms)  # Guardamos el mensaje en la lista temporal
@@ -56,7 +56,7 @@ class Mensajeria(Aplicacion):
             self.bandeja_sms.apilar(sms)
 
         if not mensaje_eliminado:
-            print("SMS no encontrado en la bandeja.")
+            print("SMS no encontrado en la bandeja del emisor.")
 
 
 
