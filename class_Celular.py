@@ -9,6 +9,7 @@ from class_Telefono import*
 from class_Calculadora import*
 from class_Cronometro import*
 from validaciones import *
+from class_Lista_Tareas import*
 
 class Celular:
     ids_unicos_usados=[]
@@ -19,7 +20,7 @@ class Celular:
             raise ValueError('El codigo debe ser de 4 digitos')
         if not validar_id_unico(id_unico, self.ids_unicos_usados):
             raise ValueError('El id_unico debe ser unico')
-        self.ids_unicos_usados.add(id_unico)
+        self.ids_unicos_usados.append(id_unico)
         self.id_unico = id_unico
         self.nombre = nombre
         self.codigo_desbloqueo=codigo_desbloqueo
@@ -39,6 +40,7 @@ class Celular:
         self.calculadora=Calculadora()
         self.cronometro=Cronometro()
         self.configuracion = Configuracion(self.nombre,self.codigo_desbloqueo)
+        self.lista_tareas = Lista_Tareas()
         self.tienda.descargada=True 
         self.configuracion.descargada=True
         self.estado_aplicacion=False
@@ -73,7 +75,9 @@ class Celular:
     def desbloquear_celular(self,codigo):
         if self.codigo_desbloqueo == codigo:
             self.bloqueado = False
-        print("El telefono esta desbloqueado.")
+            print("El telefono esta desbloqueado.")
+        else:
+            print("El codigo proporcionado no coincide con el codigo de desbloqueo.")
     
     
         
@@ -621,9 +625,76 @@ class Celular:
                 print("El celular debe estar encendido y desbloqueado")           
     
     
+# Accede a los metodos de lista_tarea, verificando el estado de celular.
+   
+   
+    
+    def abrir_Lista_tareas(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(9):
+                if not self.estado_aplicacion: 
+                    self.lista_tareas.abrir()
+                    self.estado_aplicacion = True 
+                    print('App Lista_tareas abierta.')
+                else:
+                    print('Ya estas usando otra app! No puedes usar Lista_tareas.')
+            else: 
+                print('Aplicacion: Lista_tareas no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+    def cerrar_Lista_tareas(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(9):
+                if self.estado_aplicacion: 
+                    self.lista_tareas.cerrar()
+                    self.estado_aplicacion = False  
+                    print('App Lista_tareas cerrada.')
+                else:
+                    print('Lista_tareas no esta abierta! No puedes cerrar Lista_tareas.')
+            else: 
+                print('Aplicacion: Lista_tareas no descargada.')
+        else:
+            print("El celular debe estar encendido y desbloqueado.")      
+
+    def agregar_tarea(self, tarea):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(9):        
+                if self.lista_tareas.estado:      
+                    self.lista_tareas.agregar_tarea(tarea)
+                else:
+                    print('Aplicacion no abierta')
+            else: 
+                print('Aplicacion:lista_tareas no descargada')
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')       
         
-    
-    
+
+
+    def mostrar_tareas(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(9):        
+                if self.lista_tareas.estado:      
+                    self.lista_tareas.mostrar_tareas()
+                else:
+                    print('Aplicacion no abierta')
+            else: 
+                print('Aplicacion:lista_tareas no descargada')
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')
+
+    def eliminar_tarea(self, tarea):
+
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(9):        
+                if self.lista_tareas.estado:      
+                    self.lista_tareas.eliminar_tarea(tarea)
+                else:
+                    print('Aplicacion no abierta')
+            else: 
+                print('Aplicacion:lista_tareas no descargada')
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')    
         
         
         

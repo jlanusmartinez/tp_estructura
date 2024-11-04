@@ -1,5 +1,5 @@
 from class_App import *
-from class_pila import *
+from Estructuras import *
 #Use pila
 class Mensajeria(Aplicacion):
     def __init__(self, numero_telefono):

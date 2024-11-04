@@ -1,10 +1,10 @@
 def validar_numero_telefono(numero):
-    # Verificaa que el numero tiene exactamente 10 caracteres y que todos sean digitos
+    # Verifica que el numero tiene exactamente 10 caracteres y que todos sean digitos
     if len(numero) == 10 and numero.isdigit():
         return True
     return False
 
-def validar_codigo_telefono(codigo, codigo_correcto):
+def validar_codigo_telefono(codigo):
     # Verificar que el codigo tiene 4 digitos y coincide con el codigo correcto
     if len(codigo) == 4 and codigo.isdigit():
         return True
