@@ -8,7 +8,7 @@ class Email(Aplicacion):
     
     def recibir_email(self, email_origen, mensaje, fecha=datetime.now().strftime("%d/%m/%Y %H:%M:%S")):
         self.emails_recibidos.append({'origen': email_origen, 'mensaje': mensaje, 'leido': False, 'fecha':fecha})
-        print(f"Email recibido de {email_origen}: {mensaje} el {fecha}")
+        print(f"Email recibido de {email_origen}: '{mensaje}' el {fecha}")
 #tipo fecha: "22/10/2024 10:00:00"
     def ver_emails_por_leidos(self):
         
@@ -24,11 +24,11 @@ class Email(Aplicacion):
         
         print("Correos no leídos:")
         for email in no_leidos:
-            print(f"{email['origen']}: {email['mensaje']} el: {email['fecha']}")
+            print(f"{email['origen']}: '{email['mensaje']}' el: {email['fecha']}")
         
         print("\nCorreos leídos:")
         for email in leidos:
-            print(f"{email['origen']}: {email['mensaje']} el {email['fecha']}")
+            print(f"{email['origen']}: '{email['mensaje']}' el {email['fecha']}")
         
         # Marcamos los correos no leídos como leídos después de mostrarlos
         for email in no_leidos:
@@ -44,7 +44,7 @@ class Email(Aplicacion):
                 leido_status = "Leído"
             else:   
                 leido_status = "No leído"
-            print(f"{email['origen']}: {email['mensaje']} el: {email['fecha']} ({leido_status})")
+            print(f"{email['origen']}: '{email['mensaje']}' el: {email['fecha']} ({leido_status})")
         
         # Marcamos los correos no leídos como leídos después de mostrarlos
         for email in emails_ordenados:

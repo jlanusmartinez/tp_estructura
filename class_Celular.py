@@ -338,7 +338,8 @@ class Celular:
             if self.validar_aplicacion(1):
                 if self.contactos.estado:
                     self.contactos.agregar_contacto(nombre, numero)
-                print('Aplicacion cerrada.')
+                else:
+                    print('Aplicacion cerrada.')
             else:
                 print('Aplicacion:Contactos no descargada')
         else :

@@ -63,7 +63,8 @@ if __name__ == '__main__':
     celular2.abrir_tienda()
     celular3.abrir_tienda()
     
-    #Descargo las apps
+    print('\n' 
+          '-Descargo las apps \n')    
     celular1.descargar_app(1, 'Contactos')
     celular2.descargar_app(1, 'Contactos')
     celular3.descargar_app(1, 'Contactos')
@@ -82,6 +83,8 @@ if __name__ == '__main__':
     celular1.descargar_app(7, 'Cronometro')
     celular2.descargar_app(7, 'Cronometro')
     celular3.descargar_app(7, 'Cronometro')
+    print('\n' 
+          '-Descargo las apps \n') 
     
     celular1.mostrar_apps()
     celular2.mostrar_apps()
@@ -99,9 +102,71 @@ if __name__ == '__main__':
     celular1.abrir_contactos()
     celular2.abrir_contactos()
     celular3.abrir_contactos()
+    print('\n' 
+          '-Agrego contactos \n')
     
-  
-   
+    celular1.agregar_contacto_celular('Franco', '1111111122')
+    celular1.agregar_contacto_celular('Joaco', '1234567890')
+    celular2.agregar_contacto_celular('Pedro', '1129999999')
+    celular2.agregar_contacto_celular('Joaco', '1234567890')
+    celular3.agregar_contacto_celular('Pedro', '1129999999')
+    celular3.agregar_contacto_celular('Franco', '1111111122')
+    
+    print('\n' 
+          '-Actualizo algun contacto, elimino alguno. \n')
+    
+    celular1.actualizar_contacto_celular('Joaco', 'Joaquin')
+    celular2.actualizar_contacto_celular('Pedro', 'Pedrito')
+    celular3.eliminar_contacto_celular('Franco')
+    
+    print('\n'
+          'Muestro los contactos de cada uno actualizados \n')
+    
+    celular1.ver_contactos_celular()
+    celular2.ver_contactos_celular()
+    celular3.ver_contactos_celular()
+    
+    celular1.cerrar_contactos()
+    celular2.cerrar_contactos()
+    celular3.cerrar_contactos()
+    
+    print('\n----------------------- \n'
+    'Abro Email y aplico los metodos \n'
+    '----------------------- \n')
+    
+    #Utilizo metodos de Mensajeria
+    celular1.abrir_email()
+
+    
+    print('\n'
+          'Recibo correos \n')
+    
+    celular1.recibir_email_celular('Manuel', 'Esto es un correo de Manuel', '05/11/2024')
+    celular1.recibir_email_celular('Javier', 'Esto es un correo de Javier respondiendo tu duda...')
+    celular1.recibir_email_celular('Pablo', 'Esto es un correo de pablo hablando sobre...')
+    celular1.recibir_email_celular('Marcela', 'Como va todo?', '03/11/2024')
+    
+    print('\n'
+          'Veo correos no leidos \n')
+    
+    celular1.ver_emails_por_leidos_celular()
+    
+    print('\n'
+          'Veo correos por fecha \n')
+    
+    celular1.ver_emails_por_fecha_celular()
+    
+    celular1.cerrar_email()
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
 
 
 
