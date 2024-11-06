@@ -1,250 +1,197 @@
-# import numpy as np
-# import matplotlib.pyplot as plt
-# import csv
-# from collections import Counter
-
-# # Variables para almacenar los datos
-# ratings = []
-# reviews = []
-# installs = []
-# genres = []  # Lista para almacenar todos los géneros
-
-# # Leer el archivo CSV y almacenar solo las filas válidas
-# with open('Play_Store_Data.csv', 'r', encoding='utf-8') as file:
-#     reader = csv.reader(file)
-#     header = next(reader)  # Leer y descartar el encabezado
-#     for row in reader:
-#         # Validar filas con exactamente 13 columnas antes de procesarlas
-#         if len(row) == 13:
-#             try:
-#                 rating = float(row[2])  # Columna de Ratings
-#                 review = float(row[3])  # Columna de Reviews
-#                 install = int(row[5].replace('+', '').replace(',', ''))  # Columna de Installs
-#                 genre = row[1]  # Columna de Género
-
-#                 # Agregar los valores a las listas correspondientes
-#                 ratings.append(rating)
-#                 reviews.append(review)
-#                 installs.append(install)
-#                 genres.append(genre)  # Agregar cada género a la lista de géneros
-
-#             except ValueError:
-#                 # Ignorar filas con datos no convertibles
-#                 continue
-
-# # Convertir listas a arrays de numpy
-# ratings = np.array(ratings)
-# reviews = np.array(reviews)
-# installs = np.array(installs)
-
-# # Contar las categorías de instalaciones para el gráfico de torta
-# install_categories = ['0-10K', '10K-100K', '100K-1M', '1M-10M', '10M+']
-# install_counts = [0, 0, 0, 0, 0]
-
-# # Clasificar las instalaciones en categorías
-# for install in installs:
-#     if install < 10000:
-#         install_counts[0] += 1
-#     elif install < 100000:
-#         install_counts[1] += 1
-#     elif install < 1000000:
-#         install_counts[2] += 1
-#     elif install < 10000000:
-#         install_counts[3] += 1
-#     else:
-#         install_counts[4] += 1
-
-# # Contar géneros para el gráfico de barras
-# genre_counts = Counter(genres)  # Conteo a partir de la lista de géneros
-# genres_list = list(genre_counts.keys())
-# genres_count = list(genre_counts.values())
-
-# # Crear gráficos
-# plt.figure(figsize=(12, 5))
-
-# # Gráfico 1: Distribución de instalaciones (Gráfico de Torta)
-# plt.subplot(1, 2, 1)
-# plt.pie(install_counts, labels=install_categories, autopct='%1.1f%%', startangle=140)
-# plt.title('Distribución de Instalaciones de las Aplicaciones')
-
-# # Gráfico 2: Cantidad de aplicaciones por género (Gráfico de Barras)
-# plt.subplot(1, 2, 2)
-# plt.barh(genres_list, genres_count, color='green')
-# plt.xlabel('Cantidad de Aplicaciones')
-# plt.title('Cantidad de Aplicaciones por Género')
-
-# # Mostrar los gráficos
-# plt.tight_layout()
-# plt.show()
-
-
-
-# #GRAFICO 3
-
-# # Variables para almacenar los datos
-# total_reviews = 0
-# total_installs = 0
-
-# # Leer el archivo CSV y almacenar solo las filas válidas
-# with open('Play_Store_Data.csv', 'r', encoding='utf-8') as file:
-#     reader = csv.reader(file)
-#     header = next(reader)  # Leer y descartar el encabezado
-#     for row in reader:
-#         # Validar filas con exactamente 13 columnas antes de procesarlas
-#         if len(row) == 13:
-#             try:
-#                 review = float(row[3])  # Columna de Reviews
-#                 install = int(row[5].replace('+', '').replace(',', ''))  # Columna de Installs
-
-#                 # Sumar los valores a los totales
-#                 total_reviews += review
-#                 total_installs += install
-
-#             except ValueError:
-#                 # Ignorar filas con datos no convertibles
-#                 continue
-
-# # Crear gráfico de torta
-# labels = ['Total Reviews', 'Total Installs']
-# sizes = [total_reviews, total_installs]
-# colors = ['lightblue', 'lightgreen']
-# explode = (0.1, 0)  # "explosion" para resaltar el primer segmento
-
-# plt.figure(figsize=(8, 8))
-# plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140)
-# plt.title('Proporción de Total de Reviews e Instalaciones')
-# plt.axis('equal')  # Igualar el aspecto de la torta
-# plt.show()
-
-
-
-
-
-# #GRAFICO 4
-
-# # Variables para almacenar los ratings
-# ratings = []
-
-# # Leer el archivo CSV y almacenar solo las filas válidas
-# with open('Play_Store_Data.csv', 'r', encoding='utf-8') as file:
-#     reader = csv.reader(file)
-#     header = next(reader)  # Leer y descartar el encabezado
-#     for row in reader:
-#         # Validar filas con exactamente 13 columnas antes de procesarlas
-#         if len(row) == 13:
-#             try:
-#                 rating = float(row[2])  # Columna de Ratings
-#                 ratings.append(rating)  # Agregar el rating a la lista
-
-#             except ValueError:
-#                 # Ignorar filas con datos no convertibles
-#                 continue
-
-# # Definir los rangos de ratings
-# bins = np.arange(1, 6, 1)  # Rango de 1 a 5 con intervalos de 1
-# labels = ['1-2', '2-3', '3-4', '4-5']
-
-# # Contar las aplicaciones en cada rango
-# rating_counts, _ = np.histogram(ratings, bins=bins)
-
-# # Crear gráfico de barras
-# plt.figure(figsize=(10, 6))
-# plt.bar(labels, rating_counts, color='skyblue')
-# plt.xlabel('Rango de Ratings')
-# plt.ylabel('Cantidad de Aplicaciones')
-# plt.title('Distribución de Ratings de Aplicaciones')
-# plt.xticks(rotation=45)  # Rotar etiquetas del eje x
-# plt.tight_layout()  # Ajustar el layout
-# plt.show()
-
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-import csv
+# Importación de bibliotecas necesarias
+import numpy as np  # Para trabajar con arrays y operaciones numéricas
+import matplotlib.pyplot as plt  # Para crear gráficos
+import csv  # Para leer y escribir archivos CSV
+from collections import Counter  # Para contar elementos en colecciones (aunque no se usa directamente en este código)
 
 # Variables para almacenar los datos
-ratings = []
-is_free = []  # Lista para indicar si la aplicación es gratuita o de pago
+ratings = []  # Lista para almacenar los ratings de las aplicaciones
+reviews = []  # Lista para almacenar el número de reseñas de las aplicaciones
+installs = []  # Lista para almacenar las instalaciones de las aplicaciones
+genres = []  # Lista para almacenar los géneros de las aplicaciones
 
 # Leer el archivo CSV y almacenar solo las filas válidas
+with open('Play_Store_Data.csv', 'r', encoding='utf-8') as file:
+    reader = csv.reader(file)  # Crear un lector de CSV
+    header = next(reader)  # Leer y descartar el encabezado
+    for row in reader:  # Iterar sobre las filas del archivo
+        if len(row) == 13:  # Comprobar que la fila tiene 13 columnas (válida)
+            try:
+                # Extraer y convertir los valores relevantes de cada fila
+                rating = float(row[2])  # Convertir la calificación (rating) a float
+                review = float(row[3])  # Convertir el número de reseñas (reviews) a float
+                install = int(row[5].replace('+', '').replace(',', ''))  # Convertir las instalaciones a entero, limpiando caracteres no numéricos
+                genre = row[1]  # Obtener el género de la aplicación
+                # Añadir los valores a las listas correspondientes
+                ratings.append(rating)
+                reviews.append(review)
+                installs.append(install)
+                genres.append(genre)
+            except ValueError:
+                continue  # Si hay un error en la conversión, se ignora esa fila
+
+# Convertir listas a arrays de numpy para una mayor eficiencia en cálculos y operaciones
+ratings = np.array(ratings)
+reviews = np.array(reviews)
+installs = np.array(installs)
+
+# Usar sets para eliminar duplicados de géneros
+unique_genres = set(genres)  # Convierte la lista de géneros a un conjunto (set) para obtener valores únicos
+# Contamos cuántas veces aparece cada género en la lista original
+genre_counts = {genre: genres.count(genre) for genre in unique_genres}
+
+# Convertir los géneros y sus respectivas cuentas a listas
+genres_list = list(genre_counts.keys())
+genres_count = list(genre_counts.values())
+
+# Ordenar los géneros por la cantidad de aplicaciones en cada uno, de menor a mayor
+sorted_genre_counts = sorted(zip(genres_count, genres_list))
+genres_count_sorted, genres_list_sorted = zip(*sorted_genre_counts)
+
+# Crear gráficos separados con el mismo tamaño de figura
+
+# Gráfico 1: Distribución de instalaciones de las aplicaciones
+plt.figure(figsize=(10, 6))  # Ajustar el tamaño del gráfico
+install_categories = ['0-10K', '10K-100K', '100K-1M', '1M-10M', '10M+']  # Categorías de rangos de instalaciones
+install_counts = [0, 0, 0, 0, 0]  # Inicializar contadores de aplicaciones para cada categoría
+
+# Contamos las aplicaciones que caen en cada categoría de instalaciones
+for install in installs:
+    if install < 10000:
+        install_counts[0] += 1
+    elif install < 100000:
+        install_counts[1] += 1
+    elif install < 1000000:
+        install_counts[2] += 1
+    elif install < 10000000:
+        install_counts[3] += 1
+    else:
+        install_counts[4] += 1
+
+# Graficar la distribución de instalaciones
+plt.bar(install_categories, install_counts, color='skyblue')
+plt.xlabel('Categorías de Instalación')  # Etiqueta del eje X
+plt.ylabel('Cantidad de Aplicaciones')  # Etiqueta del eje Y
+plt.title('Distribución de Instalaciones de las Aplicaciones')  # Título del gráfico
+plt.xticks(fontsize=10)  # Cambiar el tamaño de la fuente de las etiquetas en el eje X
+plt.tight_layout()  # Ajustar el diseño para evitar que los elementos se solapen
+plt.show()  # Mostrar el gráfico
+
+# Gráfico 2: Cantidad de aplicaciones por género (ordenado de menor a mayor cantidad)
+plt.figure(figsize=(10, 6))  # Ajustar el tamaño del gráfico
+plt.barh(genres_list_sorted, genres_count_sorted, color='green')  # Crear un gráfico de barras horizontal
+plt.xlabel('Cantidad de Aplicaciones')  # Etiqueta del eje X
+plt.title('Cantidad de Aplicaciones por Género (Ordenado)')  # Título del gráfico
+plt.yticks(fontsize=8)  # Cambiar el tamaño de la fuente de las etiquetas en el eje Y
+plt.tight_layout()  # Ajustar el diseño
+plt.show()  # Mostrar el gráfico
+
+# Gráfico 3: Distribución de Ratings de Aplicaciones
+ratings = []  # Reiniciar la lista de ratings
+
+# Leer el archivo CSV nuevamente para obtener solo los ratings
 with open('Play_Store_Data.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file)
     header = next(reader)  # Leer y descartar el encabezado
     for row in reader:
-        # Validar filas con exactamente 13 columnas antes de procesarlas
-        if len(row) == 13:
+        if len(row) == 13:  # Comprobar que la fila tiene 13 columnas (válida)
             try:
-                rating = float(row[2])  # Columna de Ratings
-                price = row[4].strip()  # Columna de Precio
-
-                # Determinar si la aplicación es gratuita o de pago
-                is_free.append(price == '0' or price.lower() == 'free')
-                ratings.append(rating)
-
+                rating = float(row[2])  # Obtener y convertir la calificación (rating)
+                ratings.append(rating)  # Agregar el rating a la lista
             except ValueError:
-                # Ignorar filas con datos no convertibles
-                continue
+                continue  # Si no se puede convertir el rating, se ignora esa fila
 
-# Definir rangos de ratings
-rating_ranges = [(1, 2), (2, 3), (3, 4), (4, 5)]
-range_labels = ['1-2', '2-3', '3-4', '4-5']
+# Definir los rangos de ratings para el histograma
+bins = np.arange(1, 6, 1)  # Rango de 1 a 5 con intervalos de 1
+labels = ['[1-2)', '[2-3)', '[3-4)', '[4-5)']  # Etiquetas de los rangos
 
-# Crear sets para aplicaciones en cada rango
-free_set_1_2 = set()
-free_set_2_3 = set()
-free_set_3_4 = set()
-free_set_4_5 = set()
+# Usar set para eliminar valores duplicados de los ratings antes de contar
+unique_ratings = set(ratings)  # Convierte la lista de ratings a un conjunto para obtener valores únicos
+rating_counts, _ = np.histogram(list(unique_ratings), bins=bins)  # Crear el histograma
 
-paid_set_1_2 = set()
-paid_set_2_3 = set()
-paid_set_3_4 = set()
-paid_set_4_5 = set()
+# Crear gráfico de barras para la distribución de ratings
+plt.figure(figsize=(10, 6))  # Ajustar el tamaño del gráfico
+plt.bar(labels, rating_counts, color='skyblue')  # Graficar las barras
+plt.xlabel('Rango de Ratings')  # Etiqueta del eje X
+plt.ylabel('Cantidad de Aplicaciones')  # Etiqueta del eje Y
+plt.title('Distribución de Ratings de Aplicaciones')  # Título del gráfico
+plt.xticks(rotation=45)  # Rotar las etiquetas en el eje X para una mejor legibilidad
+plt.tight_layout()  # Ajustar el diseño
+plt.show()  # Mostrar el gráfico
 
-# Clasificar aplicaciones en sets según su rango de ratings
-for rating, free in zip(ratings, is_free):
-    if 1 <= rating < 2:
-        if free:
-            free_set_1_2.add(rating)
+# Gráfico 4: Distribución de aplicaciones por tipo (Pago o Gratuita)
+tipo_traduccion = {
+    "free": "Gratuita",  # Traducción de "free" a "Gratuita"
+    "paid": "Pago"  # Traducción de "paid" a "Pago"
+}
+
+# Mapeo de categorías en inglés a español para géneros
+genero_traduccion = {
+    "teen": "Adolescente",
+    "everyone": "Para todos",
+    "mature 17+": "Maduro 17+",
+    "everyone 10+": "Para todos 10+"  # Agregar más traducciones según sea necesario
+}
+
+# Leer los datos del archivo CSV y almacenar las filas
+datos = []
+with open('Play_Store_Data.csv', 'r', encoding='utf-8') as f:
+    reader = csv.reader(f)
+    next(reader)  # Saltar la primera fila (encabezado)
+    for fila in reader:
+        datos.append(fila)  # Añadir cada fila al conjunto de datos
+
+# Usar un set para eliminar valores duplicados de los tipos de aplicaciones
+tipos = {}  # Diccionario para almacenar la cantidad de aplicaciones por tipo
+for fila in datos:
+    tipo = fila[6].strip().lower()  # Obtener el tipo de aplicación, limpiando espacios y convirtiendo a minúsculas
+    if tipo not in ["nan", "0"]:  # Filtrar los valores no válidos "NaN" y "0"
+        tipo_es = tipo_traduccion.get(tipo, tipo.capitalize())  # Traducir el tipo a español y capitalizar
+        # Contar las ocurrencias de cada tipo
+        if tipo_es in tipos:
+            tipos[tipo_es] += 1
         else:
-            paid_set_1_2.add(rating)
-    elif 2 <= rating < 3:
-        if free:
-            free_set_2_3.add(rating)
+            tipos[tipo_es] = 1
+
+# Ordenar los tipos por la cantidad de aplicaciones
+tipos_ord = sorted(tipos.items(), key=lambda x: x[1], reverse=True)
+tipos_names = [x[0] for x in tipos_ord]
+tipos_values = [x[1] for x in tipos_ord]
+
+# Crear el gráfico de barras para distribución de aplicaciones por tipo
+plt.figure(figsize=(10, 6))  # Ajustar el tamaño del gráfico
+plt.bar(tipos_names, tipos_values)  # Graficar los tipos y sus cantidades
+plt.title('Distribución de Aplicaciones por Tipo')  # Título del gráfico
+plt.xlabel('Tipo')  # Etiqueta del eje X
+plt.ylabel('Número de Aplicaciones')  # Etiqueta del eje Y
+plt.xlim(-0.5, len(tipos_names) - 0.5)  # Ajustar los límites del eje X
+plt.tight_layout()  # Ajustar el diseño
+plt.show()  # Mostrar el gráfico
+
+# Gráfico 5: Distribución de aplicaciones por género
+generos = {}  # Diccionario para almacenar la cantidad de aplicaciones por género
+for fila in datos:
+    genero = fila[8].strip().lower()  # Obtener el género de la aplicación, limpiando espacios y convirtiendo a minúsculas
+    if genero not in ["adults only 18+", "unrated"]:  # Filtrar géneros no deseados
+        genero_es = genero_traduccion.get(genero, genero.capitalize())  # Traducir el género y capitalizar
+        # Contar las ocurrencias de cada género
+        if genero_es in generos:
+            generos[genero_es] += 1
         else:
-            paid_set_2_3.add(rating)
-    elif 3 <= rating < 4:
-        if free:
-            free_set_3_4.add(rating)
-        else:
-            paid_set_3_4.add(rating)
-    elif 4 <= rating <= 5:
-        if free:
-            free_set_4_5.add(rating)
-        else:
-            paid_set_4_5.add(rating)
+            generos[genero_es] = 1
 
-# Contar aplicaciones únicas en cada rango
-free_counts_list = [
-    len(free_set_1_2), len(free_set_2_3), len(free_set_3_4), len(free_set_4_5)
-]
-paid_counts_list = [
-    len(paid_set_1_2), len(paid_set_2_3), len(paid_set_3_4), len(paid_set_4_5)
-]
+# Ordenar y graficar el segundo gráfico para distribución de aplicaciones por género
+generos_ord = sorted(generos.items(), key=lambda x: x[1], reverse=True)
+generos_names = [x[0] for x in generos_ord]
+generos_values = [x[1] for x in generos_ord]
 
-# Crear gráfico de barras
-bar_width = 0.35
-x = np.arange(len(rating_ranges))
-
-plt.bar(x - bar_width / 2, free_counts_list, bar_width, label='Gratuitas', color='skyblue')
-plt.bar(x + bar_width / 2, paid_counts_list, bar_width, label='De Pago', color='salmon')
-
-plt.xlabel('Rango de Ratings')
-plt.ylabel('Cantidad de Aplicaciones')
-plt.title('Cantidad de Aplicaciones por Rango de Ratings')
-plt.xticks(x, range_labels)
-plt.legend()
-plt.tight_layout()
-
-# Mostrar el gráfico
-plt.show()
+# Crear gráfico de barras para distribución de aplicaciones por género
+plt.figure(figsize=(10, 6))  # Ajustar el tamaño del gráfico
+plt.bar(generos_names, generos_values)  # Graficar los géneros y sus cantidades
+plt.title('Distribución de Aplicaciones por Género')  # Título del gráfico
+plt.xlabel('Género')  # Etiqueta del eje X
+plt.ylabel('Cantidad de Aplicaciones')  # Etiqueta del eje Y
+plt.xticks(rotation=90)  # Rotar las etiquetas en el eje X
+plt.xlim(-0.5, len(generos_names) - 0.5)  # Ajustar los límites del eje X
+plt.tight_layout()  # Ajustar el diseño
+plt.show()  # Mostrar el gráfico
