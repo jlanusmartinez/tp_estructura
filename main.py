@@ -17,13 +17,14 @@ from class_Cronometro import Cronometro
 if __name__ == '__main__':
     #Se crea la central
     central=Central()
-    
+    central.cargar_datos()
     #Se crean instancias de celular
     celular1=Celular(1,'pedro','1234','phone 8','IOs','version 8','10', '123' ,'1129999999')
     print(celular1)
     celular2=Celular(2,'franco','2020','phone 8','IOs','version 8','10','123' ,'1111111122')
     print(celular2)
     celular3 = Celular(3,"joaco", '3245', "Galaxy S21", "Android", "11", '8', '128', '1234567890')
+    
     print(celular3)
     
     #Se agregan a la central los dispositivos
@@ -253,6 +254,13 @@ if __name__ == '__main__':
     celular1.usar_cronometro('iniciar')
     
     celular1.cerrar_cronometro()
+    
+    central.guardar_datos()
+    
+    
+
+    
+    
     
     
     

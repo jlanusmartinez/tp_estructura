@@ -3,6 +3,8 @@ from datetime import datetime
 from class_Celular import Celular
 from class_Telefono import *
 from class_Mensajeria import *
+import pickle
+import csv
 class Central :
     
     def __init__(self):
@@ -184,7 +186,41 @@ class Central :
     
     
 
-               
+    def guardar_datos(self): #GUARDAR datos  
+        try: 
+            with open('dispositivos_registrados.pkl', 'wb') as f:
+                pickle.dump(self.dispositivos_registrados, f)
+            with open('registro_llamadas.csv', 'w', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerows(self.registro_llamadas)
+            with open('registro_sms.csv', 'w', newline='') as f:
+                writer = csv.writer(f)
+                writer.writerows(self.registro_sms)
+            
+            print("Datos guardados correctamente.")
+        except:
+            print("Error al guardar los datos.")
+        
+    
+    def cargar_datos(self): #CARGAR datos
+        
+        try:
+            with open('dispositivos_registrados.pkl', 'rb') as f:
+                self.dispositivos_registrados = pickle.load(f)
+                
+            with open('registro_llamadas.csv', 'r') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    self.registro_llamadas.append(row)
+            with open('registro_sms.csv', 'r') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    self.registro_sms.append(row)
+
+            print("Datos cargadas correctamente.")  
+        except:
+            print("Error al cargar los datos.")
+              
             
         
 
