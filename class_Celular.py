@@ -7,12 +7,16 @@ from class_Mensajeria import *
 from class_Email import*
 from class_Telefono import*
 from class_Calculadora import*
-from class_Cronometro import*
 from validaciones import *
 from class_Lista_Tareas import*
 
+
 class Celular:
     ids_unicos_usados=[]
+    @staticmethod
+    def inicializar_ids(lista):
+        for celular in lista:
+            Celular.ids_unicos_usados.append(celular.id_unico)
     def __init__(self, id_unico, nombre,codigo_desbloqueo, modelo, sistema_operativo, version, memoria_ram, almacenamiento, numero_telefono):
         if not validar_numero_telefono(numero_telefono):
             raise ValueError('El numero de telefono debe tener 10 digitos')
@@ -38,7 +42,6 @@ class Celular:
         self.mensajeria=Mensajeria(self.numero_telefono)
         self.email=Email()
         self.calculadora=Calculadora()
-        self.cronometro=Cronometro()
         self.configuracion = Configuracion(self.nombre,self.codigo_desbloqueo)
         self.lista_tareas = Lista_Tareas()
         self.tienda.descargada=True 
@@ -429,18 +432,43 @@ class Celular:
                 print('Aplicacion:Telefono no descargada')
         else:
             print('El celular tiene que estar encendido y desbloqueado')
+
+    def recibir_llamada(self, emisor, duracion, hora):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(4):
+                if self.telefono.estado:                   
+                    self.telefono.recibir_llamada(emisor,duracion,hora)
+                else:
+                    print('Aplicacion no abierta')
+            else:
+                print('Aplicacion:Telefono no descargada')
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')
         
-    def imprimir_registro(self):
+    def imprimir_registro_emisor(self):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(4):
                 if self.telefono.estado:              
-                    self.telefono.imprimir_registro()
+                    self.telefono.imprimir_registro_emisor()
                 else:
                     print('Aplicacion no abierta')
             else: 
                 print('Aplicacion:Telefono no descargada')
         else:
             print('El celular tiene que estar encendido y desbloqueado')
+
+    def imprimir_registro_destinatario(self):
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(4):
+                if self.telefono.estado:              
+                    self.telefono.imprimir_registro_destinatario()
+                else:
+                    print('Aplicacion no abierta')
+            else: 
+                print('Aplicacion:Telefono no descargada')
+        else:
+            print('El celular tiene que estar encendido y desbloqueado')
+    
             
             
 
@@ -577,53 +605,7 @@ class Celular:
 
 
 
-
-# Accede al cronometro, verificando el estado del celular.
-
-
-    
-    def abrir_cronometro(self):
-        if self.encendido and not self.bloqueado:
-            if self.validar_aplicacion(7):
-                if not self.estado_aplicacion:  
-                    self.cronometro.abrir()
-                    self.estado_aplicacion = True  
-                    print('App Cronometro abierta.')
-                else:
-                    print('Ya estas usando otra app! No puedes usar Cronometro.')
-            else: 
-                print('Aplicacion: Cronometro no descargada.')
-        else:
-            print("El celular debe estar encendido y desbloqueado.")
-
-    def cerrar_cronometro(self):
-        if self.encendido and not self.bloqueado:
-            if self.validar_aplicacion(7):
-                if self.estado_aplicacion:  
-                    self.cronometro.cerrar()
-                    self.estado_aplicacion = False  
-                    print('App Cronometro cerrada.')
-                else:
-                    print('Cronometro no esta abierto! No puedes cerrar Cronometro.')
-            else: 
-                print('Aplicacion: Cronometro no descargada.')
-        else:
-            print("El celular debe estar encendido y desbloqueado.")
-
-    
-    def usar_cronometro(self, accion):
-        if self.encendido and not self.bloqueado:
-            if self.validar_aplicacion(7):
-                if accion == "iniciar":
-                    self.cronometro.iniciar()
-                elif accion == "detener":
-                    self.cronometro.detener()
-                else:
-                    print("Accion no valida. Usa 'iniciar' o 'detener'.")
-            else: 
-                print('Aplicacion:Cronometro no descargada')
-        else:
-                print("El celular debe estar encendido y desbloqueado")           
+      
     
     
 # Accede a los metodos de lista_tarea, verificando el estado de celular.

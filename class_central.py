@@ -5,10 +5,11 @@ from class_Telefono import *
 from class_Mensajeria import *
 import pickle
 import csv
+from class_registro_dispositivo import Registro_dispositivos
 class Central :
     
     def __init__(self):
-        self.dispositivos_registrados= {}
+        self.dispositivos_registrados=Registro_dispositivos()
         self.registro_llamadas=[]
         self.registro_sms=[]
         
@@ -101,6 +102,7 @@ class Central :
                                     
                             # Si ambos están disponibles, registrar la llamada
                             celular_1.hacer_llamada(numero_recibe, duracion, datetime.now())
+                            celular_2.telefono.recibir_llamada(numero_emisor, duracion, datetime.now())
                             print(f"Llamada conectada entre {numero_emisor} y {numero_recibe}.")
                             self.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", datetime.now()))   
                     
@@ -188,8 +190,7 @@ class Central :
 
     def guardar_datos(self): #GUARDAR datos  
         try: 
-            with open('dispositivos_registrados.pkl', 'wb') as f:
-                pickle.dump(self.dispositivos_registrados, f)
+           
             with open('registro_llamadas.csv', 'w', newline='') as f:
                 writer = csv.writer(f)
                 writer.writerows(self.registro_llamadas)
@@ -205,8 +206,7 @@ class Central :
     def cargar_datos(self): #CARGAR datos
         
         try:
-            with open('dispositivos_registrados.pkl', 'rb') as f:
-                self.dispositivos_registrados = pickle.load(f)
+            
                 
             with open('registro_llamadas.csv', 'r') as f:
                 reader = csv.reader(f)
