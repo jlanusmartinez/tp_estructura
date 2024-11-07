@@ -76,16 +76,16 @@ class Central :
         celular_1 = self.dispositivos_registrados.get(numero_emisor)
         celular_2 = self.dispositivos_registrados.get(numero_recibe)
         
-        if not celular_1.estado_red:
+        if not celular_1.estado_red_movil:
             print ("Llamada fallida: El emisor no tiene red activada.")
             return 
         if not celular_1.estado_datos:
              print('Llamada fallida: El emisor no tiene datos activados.')
-        if not celular_2.estado_red or not celular_2.estado_datos:
+        if not celular_2.estado_red_movil or not celular_2.estado_datos:
             print ("Llamada fallida: El receptor no tiene red activada ni datos activados.")
             return
         if celular_1.validar_aplicacion(4):
-                    if celular_1.mensajeria.estado:
+                    if celular_1.telefono.estado:
                             hora_actual = datetime.now()     
                             # Verificar si el receptor está ocupado
                             if celular_2.telefono.ocupado_hasta and hora_actual < celular_2.telefono.ocupado_hasta:
@@ -105,7 +105,7 @@ class Central :
                     else:
                         print('Aplicacion no abierta')
         else: 
-                print('Aplicacion:Mensajeria no descargada')
+                print('Aplicacion:Telefono no descargada')
 
         
         hora_actual = datetime.now()
@@ -127,12 +127,12 @@ class Central :
         celular_1 = self.dispositivos_registrados.get(numero_emisor)
         celular_2 = self.dispositivos_registrados.get(numero_recibe)
 
-        if not celular_1.estado_red:
+        if not celular_1.estado_red_movil:
             print ("Llamada fallida: El emisor no tiene red activada.")
             return 
         if not celular_1.estado_datos:
              print('Llamada fallida: El emisor no tiene datos activados.')
-        if not celular_2.estado_red or not celular_2.estado_datos:
+        if not celular_2.estado_red_movil or not celular_2.estado_datos:
             print ("Llamada fallida: El receptor no tiene red activada ni datos activados.")
             return
         if celular_1.encendido and not celular_1.bloqueado:
@@ -140,7 +140,7 @@ class Central :
                     if celular_1.mensajeria.estado:     
                             celular_2.recibir_sms(numero_emisor,mensaje,fecha)      
                             celular_1.enviar_sms(numero_recibe,mensaje,fecha)
-                            print(f"SMS enviado de {celular_1.nombre} a {celular_2.nombre}: {mensaje} el {fecha}")
+                            print(f"SMS enviado de {celular_1.nombre} a {celular_2.nombre}: '{mensaje}' el {fecha}")
                             self.registro_sms.append((numero_emisor, numero_recibe, mensaje,fecha))
                     
                     else:
@@ -173,7 +173,7 @@ class Central :
                         for sms in self.registro_sms:
                             if sms[0] == numero_emisor and sms[1] == numero_recibe and sms[2] == mensaje:
                                 self.registro_sms.remove(sms)
-                                print(f"El SMS {mensaje} de {celular_1.nombre} a {celular_2.nombre} ha sido eliminado del registro.")
+                                print(f"El SMS '{mensaje}' de {celular_1.nombre} a {celular_2.nombre} ha sido eliminado del registro.")
                                 return
                     else:
                         print('Aplicacion no abierta')

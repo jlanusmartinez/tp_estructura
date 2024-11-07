@@ -134,7 +134,7 @@ if __name__ == '__main__':
     'Abro Email y aplico los metodos \n'
     '----------------------- \n')
     
-    #Utilizo metodos de Mensajeria
+    #Utilizo metodos de Email
     celular1.abrir_email()
 
     
@@ -159,9 +159,100 @@ if __name__ == '__main__':
     celular1.cerrar_email()
     
     
+    
+    #utilizo metodos de mensajeria
+    print('\n----------------------- \n'
+    'Abro Mensajeria y aplico los metodos \n'
+    '----------------------- \n')
+    
+    celular1.abrir_mensajeria()
+    celular2.abrir_mensajeria()
+    celular3.abrir_mensajeria()
+    
+    print('\n'
+          'Realizo mensajes a un contacto. \n')
+    
+    central.enviar_sms('1129999999', '1234567890', 'Como va todo...')
+    central.enviar_sms('1111111122', '1129999999', 'Como te fue el otro dia?')
+    central.enviar_sms('1234567890', '1111111122', 'Me fui a comer')
+    central.enviar_sms('1234567890', '1111111122', 'Donde estas?')
+    
+    print('\n'
+          'Elimino mensajes. \n')
+    
+    central.eliminar_sms('1234567890', '1111111122', 'Donde estas?')
+    
+    print('\n'
+          'Muestro la bandeja de mensajes. \n')
+    
+    celular1.ver_bandeja_sms()
+    celular2.ver_bandeja_sms()
+    celular3.ver_bandeja_sms()
+    
+    celular1.cerrar_mensajeria()
+    celular2.cerrar_mensajeria()
+    celular3.cerrar_mensajeria()
+    
+    
+    
+    
+    #Utilizo metodos de Telefono
+    
+    print('\n----------------------- \n'
+    'Abro Telefono y aplico los metodos \n'
+    '----------------------- \n')
+    
+    celular1.abrir_telefono()
+    celular2.abrir_telefono()
+    
+    
+    print('\n'
+          'realizo llamadas a un contacto, estableciendo una duracion. \n')
+    
+    central.llamada('1129999999', '1111111122', 5)
+    
+    print('\n'
+          'Muestro el registro de llamadas. \n')
+    
+    celular1.imprimir_registro()
+    celular2.imprimir_registro()
+    
+    celular1.cerrar_telefono()
+    celular2.cerrar_telefono()
+   
+      
+    
+    
 
     
+    #Utilizo metodos de calculadora
     
+    print('\n----------------------- \n'
+    'Abro Calculadora y aplico los metodos \n'
+    '----------------------- \n')
+    
+    celular1.abrir_calculadora()
+    
+    print('\n'
+          'Realizo operaciones basicas. \n')
+    
+    celular1.usar_calculadora('sumar', 3, 5)
+    celular1.usar_calculadora('multiplicar', 3, 5)
+    
+    celular1.cerrar_calculadora()
+    
+    
+    #Utilizo metodos de Cronometro
+    
+    print('\n----------------------- \n'
+    'Abro Cronometro y aplico los metodos \n'
+    '----------------------- \n')
+    
+    celular1.abrir_cronometro()
+    
+    celular1.usar_cronometro('iniciar')
+    
+    celular1.cerrar_cronometro()
     
     
     

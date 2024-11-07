@@ -422,7 +422,7 @@ class Celular:
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(4):
                 if self.telefono.estado:                   
-                    self.telefono.llamada_realizada(self,destino,duracion,hora)
+                    self.telefono.llamada_realizada(destino,duracion,hora)
                 else:
                     print('Aplicacion no abierta')
             else:
