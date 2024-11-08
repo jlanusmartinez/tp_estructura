@@ -18,6 +18,8 @@ if __name__ == '__main__':
     #Se crea la central
     central=Central()
     central.cargar_datos()
+    celular_4=central.dispositivos_registrados['1129999999']
+    
     #Se crean instancias de celular
     celular1=Celular(1,'pedro','1234','phone 8','IOs','version 8','10', '123' ,'1129999999')
     print(celular1)
