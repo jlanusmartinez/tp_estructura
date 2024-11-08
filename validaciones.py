@@ -1,6 +1,6 @@
 def validar_numero_telefono(numero):
     # Verifica que el numero tiene exactamente 10 caracteres y que todos sean digitos
-    if len(numero) == 10 and numero.isdigit():
+    if len(numero) == 10 and numero.isdigit() and numero.startswith('11'):
         return True
     return False
 

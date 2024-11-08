@@ -25,7 +25,22 @@ class Telefono(Aplicacion):
         self.registro_llamadas.append(llamada)
         self.ocupado_hasta = tiempo_finalizacion
     
-    def imprimir_registro(self):
+    def recibir_llamada(self,emisor,duracion,hora):
+        # Calcular el tiempo de finalización sumando la duración
+        tiempo_finalizacion = hora + timedelta(minutes=duracion)
+
+        # Guardar los datos de la llamada en el registro
+        llamada = {
+            'emisor': emisor,
+            'hora_inicio': hora,
+            'duracion_minutos': duracion,
+            'tiempo_finalizacion': tiempo_finalizacion
+        }
+        self.registro_llamadas.append(llamada)
+        self.ocupado_hasta = tiempo_finalizacion
+    
+    
+    def imprimir_registro_emisor(self):
             if not self.registro_llamadas:
                 print("No hay registros de llamadas.")
                 return
@@ -33,6 +48,19 @@ class Telefono(Aplicacion):
             print("Registro de llamadas:")
             for llamada in self.registro_llamadas:
                 print(f"- Destinatario: {llamada['destinatario']}, "
+                  f"Hora de inicio: {llamada['hora_inicio']}, "
+                  f"Duración: {llamada['duracion_minutos']} minutos, "
+                  f"Tiempo de finalización: {llamada['tiempo_finalizacion']}")
+    
+    
+    def imprimir_registro_destinatario(self):
+            if not self.registro_llamadas:
+                print("No hay registros de llamadas.")
+                return
+        
+            print("Registro de llamadas:")
+            for llamada in self.registro_llamadas:
+                print(f"- Emisor: {llamada['emisor']}, "
                   f"Hora de inicio: {llamada['hora_inicio']}, "
                   f"Duración: {llamada['duracion_minutos']} minutos, "
                   f"Tiempo de finalización: {llamada['tiempo_finalizacion']}")

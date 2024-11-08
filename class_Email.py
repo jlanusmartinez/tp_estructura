@@ -6,7 +6,7 @@ class Email(Aplicacion):
         super().__init__(3,'Email')
         self.emails_recibidos = []
     
-    def recibir_email(self, email_origen, mensaje, fecha=datetime.now().strftime("%d/%m/%Y %H:%M:%S")):
+    def recibir_email(self, email_origen, mensaje, fecha=datetime.now()):
         self.emails_recibidos.append({'origen': email_origen, 'mensaje': mensaje, 'leido': False, 'fecha':fecha})
         print(f"Email recibido de {email_origen}: '{mensaje}' el {fecha}")
 #tipo fecha: "22/10/2024 10:00:00"
