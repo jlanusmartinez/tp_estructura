@@ -10,6 +10,7 @@ class Configuracion(Aplicacion):
         
 
     def on_off_red_movil(self):
+        #Activa o desactiva los datos móviles del teléfono.
         if self.red_movil_activada == False:
             self.red_movil_activada = True
             print("Red móvil activada.")

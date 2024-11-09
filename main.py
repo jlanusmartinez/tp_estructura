@@ -1,5 +1,4 @@
-#PREGUNTAR A LUCAS CUESTION DEL MAIN, COMO LO HACEMOS?
-#PARA MANDAR MSJS/LLAMADAS NECESITO VERIFICAR YA LO TENGA AGENDADO
+
 from class_App import Aplicacion
 from class_Celular import Celular
 from class_central import Central
@@ -13,12 +12,11 @@ from class_Calculadora import Calculadora
 import datetime
 
 
-
 if __name__ == '__main__':
-    #Se crea la central
+    print('\nSe crea la central \n')
     central=Central()
     central.cargar_datos()
-    #Se crean instancias de celular
+    print('\nSe crean instancias de celular\n')
     celular1=Celular(1,'pedro','1234','phone 8','IOs','version 8','10', '123' ,'1129999999')
     print(celular1)
     celular2=Celular(2,'franco','2020','phone 8','IOs','version 8','10','123' ,'1111111122')
@@ -26,12 +24,12 @@ if __name__ == '__main__':
     celular3 = Celular(3,"joaco", '3245', "Galaxy S21", "Android", "11", '8', '128', '1134567890')
     print(celular3)
     
-    #Se agregan a la central los dispositivos
+    print('\nSe agregan a la central los dispositivos\n')
     central.agregar_celular(celular1)
     central.agregar_celular(celular2)
     central.agregar_celular(celular3)
     
-    #Se encienden y desbloquean los celulares
+    print('\nSe encienden y desbloquean los celulares\n')
     celular1.encender_celular()
     celular1.desbloquear_celular('1234')
     celular2.encender_celular()
@@ -58,15 +56,13 @@ if __name__ == '__main__':
     celular1.descargar_app(8, 'Calculadora')
     celular2.descargar_app(8, 'Calculadora')
     celular3.descargar_app(8, 'Calculadora')
-    
+    celular1.descargar_app(9, 'Lista_Tareas')
     celular1.cerrar_tienda()
     celular2.cerrar_tienda()
     celular3.cerrar_tienda()  
       
       
-    print('\n----------------------- \n'
-          'Abro Configuracion y aplico los metodos \n'
-          '----------------------- \n')
+
     #Utilizo metodos de configuracion    
     def funcionalidades_configuracion():
       celular1.abrir_configuracion()
@@ -76,6 +72,11 @@ if __name__ == '__main__':
       celular1.on_off_red_movil_celular()
       celular2.on_off_red_movil_celular()
       celular3.on_off_red_movil_celular()
+      
+      celular1.on_off_datos_celular()
+      celular2.on_off_datos_celular()
+      celular3.on_off_datos_celular()
+      #LOS DATOS YA VIENEN ACTIVADOS
       
       celular1.cerrar_configuracion()
       celular2.cerrar_configuracion()
@@ -106,9 +107,9 @@ if __name__ == '__main__':
             '-Agrego contactos \n')
       
       celular1.agregar_contacto_celular('Franco', '1111111122')
-      celular1.agregar_contacto_celular('Joaco', '1234567890')
+      celular1.agregar_contacto_celular('Joaco', '1134567890')
       celular2.agregar_contacto_celular('Pedro', '1129999999')
-      celular2.agregar_contacto_celular('Joaco', '1234567890')
+      celular2.agregar_contacto_celular('Joaco', '1134567890')
       celular3.agregar_contacto_celular('Pedro', '1129999999')
       celular3.agregar_contacto_celular('Franco', '1111111122')
       
@@ -145,6 +146,11 @@ if __name__ == '__main__':
             'Veo correos no leidos \n')
       
       celular1.ver_emails_por_leidos_celular()
+
+      print('\n'
+            'Ahora veo correos leidos \n')
+      
+      celular1.ver_emails_por_leidos_celular()
       
       print('\n'
             'Veo correos por fecha \n')
@@ -162,17 +168,17 @@ if __name__ == '__main__':
       celular3.abrir_mensajeria()
       
       print('\n'
-            'Realizo mensajes a un contacto. \n')
+            'Envio mensajes a un contacto. \n')
       
-      central.enviar_sms('1129999999', '1234567890', 'Como va todo...')
+      central.enviar_sms('1129999999', '1134567890', 'Como va todo...')
       central.enviar_sms('1111111122', '1129999999', 'Como te fue el otro dia?')
-      central.enviar_sms('1234567890', '1111111122', 'Me fui a comer')
-      central.enviar_sms('1234567890', '1111111122', 'Donde estas?')
+      central.enviar_sms('1134567890', '1111111122', 'Me fui a comer')
+      central.enviar_sms('1134567890', '1111111122', 'Donde estas?')
       
       print('\n'
             'Elimino mensajes. \n')
       
-      central.eliminar_sms('1234567890', '1111111122', 'Donde estas?')
+      central.eliminar_sms('1134567890', '1111111122', 'Donde estas?')
       
       print('\n'
             'Muestro la bandeja de mensajes. \n')
@@ -201,9 +207,14 @@ if __name__ == '__main__':
       
       central.llamada('1129999999', '1111111122', 5)
       
+      
+      print('\n'
+            'Realizo llamadas a un contacto ocupado, entonces no me realizar la llamada. \n')
+      
 
       
-      central.llamada('1234567890', '1129999999', 7)
+      central.llamada('1134567890', '1129999999', 7)
+      #Muestro que esta ocupado el receptor
       
       print('\n' 'Muestro el registro de llamadas. \n')
       
@@ -234,22 +245,25 @@ if __name__ == '__main__':
       celular1.usar_calculadora('multiplicar', 3, 5)
       
       celular1.cerrar_calculadora()
-    
+    def funcionalidades_lista_tareas():
+      
+      celular1.abrir_lista_tareas()
+      celular1.agregar_tarea('Limpiar mi cuarto')
+      celular1.agregar_tarea('Terminar TP de estructuras con los chicos')
+      celular1.mostrar_tareas()
+      celular1.eliminar_tarea('Limpiar mi cuarto')    
+      celular1.mostrar_tareas()
+      
+      
     
       
-      central.guardar_datos()
+      
+      
+    
+      
     
     
-from class_App import Aplicacion
-from class_Celular import Celular
-from class_central import Central
-from class_Configuracion import Configuracion
-from class_Contactos import Contactos
-from class_Telefono import Telefono
-from class_Email import Email
-from class_Mensajeria import Mensajeria
-from class_Tienda import Tienda 
-from class_Calculadora import Calculadora
+
 
 if __name__ == '__main__':
 
@@ -261,7 +275,7 @@ if __name__ == '__main__':
       print("5. Funcionalidades de Email")
       print("6. Funcionalidades de Configuracion")
       print("7. Funcionalidades de Tienda")
-      print("8. Salir")
+      print("8. Funcionalidades de Lista Tareas")
 
       opcion = input("Selecciona una opción (1-8): ")
       while opcion not in ["1", "2", "3", "4", "5", "6", "7", "8"]:
@@ -295,8 +309,15 @@ if __name__ == '__main__':
       elif opcion == '7':
             print("\nFuncionalidades de Tienda:")
             funcionalidades_tienda()
+            
+      elif opcion == '8':
+            print("\nFuncionalidades de Lista Tareas:")
+            funcionalidades_lista_tareas()
 
-      central.dispositivos_registrados.guardar()
+      #central.dispositivos_registrados.guardar()
+      central.guardar_datos()
+      
+      
 
     
     

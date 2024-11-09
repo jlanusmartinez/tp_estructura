@@ -9,13 +9,13 @@ class Registro_dispositivos (dict):
        try :
         self.leer()
        except Exception as e:
-            print('No hay archivo para leer')
-            print(e)
+        print('No hay archivo para leer')
+        print(e)
 
     def inicializar (self,diccionario:dict):
             for key , values in diccionario.items():
                 self[key]=values
-            Celular.inicializar_ids(diccionario.values)
+            Celular.inicializar_ids(diccionario.values())
                 
     def leer(self):
          with open('dispositivos_registrados.pkl','rb') as f:

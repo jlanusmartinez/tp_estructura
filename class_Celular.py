@@ -124,7 +124,7 @@ class Celular:
     def on_off_red_movil_celular(self):
         if self.encendido and not self.bloqueado:
             if self.configuracion.estado:
-                return self.configuracion.red_movil_activada
+                self.configuracion.on_off_red_movil
             else: 
                 print('Aplicacion cerrada.')
         else:
@@ -133,7 +133,7 @@ class Celular:
     def on_off_datos_celular(self):
         if self.encendido and not self.bloqueado:
             if self.configuracion.estado:
-                return self.configuracion.datos_activados
+                self.configuracion.on_off_datos()
             else: 
                 print('Aplicacion cerrada')
         else:
@@ -612,7 +612,7 @@ class Celular:
    
    
     
-    def abrir_Lista_tareas(self):
+    def abrir_lista_tareas(self):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(9):
                 if not self.estado_aplicacion: 
@@ -626,7 +626,7 @@ class Celular:
         else:
             print("El celular debe estar encendido y desbloqueado.")
 
-    def cerrar_Lista_tareas(self):
+    def cerrar_lista_tareas(self):
         if self.encendido and not self.bloqueado:
             if self.validar_aplicacion(9):
                 if self.estado_aplicacion: 
