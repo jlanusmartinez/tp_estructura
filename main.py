@@ -1,14 +1,8 @@
 
-from class_App import Aplicacion
+
 from class_Celular import Celular
 from class_central import Central
-from class_Configuracion import Configuracion
-from class_Contactos  import Contactos
-from class_Telefono import Telefono
-from class_Email import Email
-from class_Mensajeria import Mensajeria
-from class_Tienda import Tienda 
-from class_Calculadora import Calculadora
+
 import datetime
 
 
@@ -16,15 +10,10 @@ if __name__ == '__main__':
     print('\nSe crea la central \n')
     central=Central()
     central.cargar_datos()
-<<<<<<< HEAD
-    print('\nSe crean instancias de celular\n')
-=======
-    celular_4=central.dispositivos_registrados['1129999999']
-    
-    #Se crean instancias de celular
->>>>>>> b5db2d3d1c02a52a9c6cb404381b1f7823b4301d
-    celular1=Celular(1,'pedro','1234','phone 8','IOs','version 8','10', '123' ,'1129999999')
-    print(celular1)
+
+    print('\nSe crean los celulares\n')
+    # Se crean instancias de celular
+    celular1 = Celular(1, 'pedro', '1234', 'phone 8', 'IOs', 'version 8', '10', '123', '1129999999')
     celular2=Celular(2,'franco','2020','phone 8','IOs','version 8','10','123' ,'1111111122')
     print(celular2)
     celular3 = Celular(3,"joaco", '3245', "Galaxy S21", "Android", "11", '8', '128', '1134567890')
