@@ -14,6 +14,8 @@ if __name__ == '__main__':
     print('\nSe crean los celulares\n')
     # Se crean instancias de celular
     celular1 = Celular(1, 'pedro', '1234', 'phone 8', 'IOs', 'version 8', '10', '123', '1129999999')
+    celular1=Celular(1,'pedro','1234','phone 8','IOs','version 8','10', '123' ,'1129999999')
+    print(celular1)
     celular2=Celular(2,'franco','2020','phone 8','IOs','version 8','10','123' ,'1111111122')
     print(celular2)
     celular3 = Celular(3,"joaco", '3245', "Galaxy S21", "Android", "11", '8', '128', '1134567890')

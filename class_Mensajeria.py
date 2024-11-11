@@ -8,8 +8,6 @@ class Mensajeria(Aplicacion):
         self.bandeja_sms = Pila()
  
             
-# #PARA ELIMINAR EL MENSAJE LE TENGO QUE PASAR EL NOMBRE DE MI AMIGO Y EL MENSAJE TEXTUAL --> ARREGLAR
-
     def enviar_sms(self, numero_destino, mensaje,fecha):
             mensaje_enviado = [f"Enviado a {numero_destino}: {mensaje}", f" el {fecha}"]
             self.bandeja_sms.apilar(mensaje_enviado)
