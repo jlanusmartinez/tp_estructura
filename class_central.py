@@ -23,7 +23,6 @@ class Central :
             print('numero  eliminado del registro')
         else:
             print("El numero  no esta registrado en la central")
-    #PROBAR FUNCIONAMIENTO
     
     def estado_dispositivo(self, numero):
             if numero not in self.dispositivos_registrados:
@@ -49,18 +48,6 @@ class Central :
             print("El dispositivo  no tiene datos moviles activados.")
             return False
         return True
-    '''
-    def verificar_red(self, numero):
-        if numero not in self.dispositivos_registrados:
-            print("El numero no esta registrado en la central.")
-            return False
-        
-        celular = self.dispositivos_registrados[numero]
-        if not celular.encendido:
-            print("El dispositivo  no se encuentra encendido.")
-            return False
-        return True
-    '''
 
     
     
@@ -123,9 +110,6 @@ class Central :
         if not self.estado_dispositivo(numero_emisor):
             print("SMS fallido: El emisor no esta disponible.")
             return  
-        # if not(self.estado_dispositivo(numero_recibe)):
-        #     print('SMS fallido: El receptor no esta diponible')
-            #CAMBIAR ESTO
 
         
         celular_1 = self.dispositivos_registrados.get(numero_emisor)

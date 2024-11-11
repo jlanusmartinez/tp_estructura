@@ -1,66 +1,67 @@
 class Pila:
     def __init__(self):
-        self.elementos = []
+        self.elementos = []  # Inicializa la lista vacía para almacenar los elementos de la pila
 
     def apilar(self, item):
         """Agrega un elemento a la cima de la pila."""
-        self.elementos.append(item)
+        self.elementos.append(item)  # Añade el item al final de la lista (la cima de la pila)
 
     def desapilar(self):
         """Elimina y devuelve el elemento en la cima de la pila."""
-        if not self.esta_vacia():
-            return self.elementos.pop()
+        if not self.esta_vacia():  # Si la pila no está vacía
+            return self.elementos.pop()  # Elimina y devuelve el último elemento de la lista
         else:
-            print("La pila está vacía.")
-            return None
+            print("La pila está vacía.")  # Si la pila está vacía, muestra un mensaje de error
+            return None  # Retorna None si no hay elementos en la pila
 
     def esta_vacia(self):
         """Verifica si la pila está vacía."""
-        return len(self.elementos) == 0
+        return len(self.elementos) == 0  # Retorna True si la pila está vacía, False en caso contrario
 
     def tamano(self):
         """Devuelve el tamaño de la pila."""
-        return len(self.elementos)
+        return len(self.elementos)  # Retorna la cantidad de elementos en la pila
+
 
 class Nodo:
     def __init__(self, dato):
-        self.dato = dato
-        self.siguiente = None 
+        self.dato = dato  # Almacena el dato en el nodo
+        self.siguiente = None  # Inicializa el puntero 'siguiente' como None (no apunta a ningún nodo)
 
     def __repr__(self):
-        return f"Nodo({self.dato})"  
+        return f"Nodo({self.dato})"  # Representación en cadena del nodo para facilitar la depuración
 
 
 class ListaEnlazada:
     def __init__(self):
-        self.cabeza = None  
+        self.cabeza = None  # Inicializa la cabeza de la lista como None (lista vacía)
 
     def agregar(self, dato):
-        nuevo_nodo = Nodo(dato)
-        if not self.cabeza: 
-            self.cabeza = nuevo_nodo
+        nuevo_nodo = Nodo(dato)  # Crea un nuevo nodo con el dato proporcionado
+        if not self.cabeza:  # Si la lista está vacía (no hay cabeza)
+            self.cabeza = nuevo_nodo  # El nuevo nodo se convierte en la cabeza de la lista
         else:
             actual = self.cabeza
-            while actual.siguiente:  
+            while actual.siguiente:  # Recorre la lista hasta el último nodo
                 actual = actual.siguiente
-            actual.siguiente = nuevo_nodo  
+            actual.siguiente = nuevo_nodo  # El último nodo apunta al nuevo nodo
 
     def mostrar(self):
-        actual = self.cabeza
-        while actual:  
-            print(actual.dato)
-            actual = actual.siguiente
+        actual = self.cabeza  # Comienza desde la cabeza de la lista
+        while actual:  # Mientras haya nodos en la lista
+            print(actual.dato)  # Muestra el dato del nodo actual
+            actual = actual.siguiente  # Avanza al siguiente nodo
 
     def eliminar(self, dato):
-        actual = self.cabeza
-        previo = None
-        while actual:  
-            if actual.dato == dato:
-                if previo:  
-                    previo.siguiente = actual.siguiente
-                else:  
-                    self.cabeza = actual.siguiente
-                return True
-            previo = actual
-            actual = actual.siguiente
-        return False  
+        actual = self.cabeza  # Comienza desde la cabeza de la lista
+        previo = None  # No hay nodo previo al principio
+        while actual:  # Recorre toda la lista
+            if actual.dato == dato:  # Si encuentra el dato que coincide
+                if previo:  # Si el nodo a eliminar no es la cabeza
+                    previo.siguiente = actual.siguiente  # El nodo anterior apunta al siguiente nodo
+                else:  # Si el nodo a eliminar es la cabeza
+                    self.cabeza = actual.siguiente  # La cabeza apunta al siguiente nodo
+                return True  # Retorna True si se eliminó el nodo
+            previo = actual  # Actualiza el nodo previo
+            actual = actual.siguiente  # Avanza al siguiente nodo
+        return False  # Retorna False si no se encuentra el dato en la lista

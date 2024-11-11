@@ -1,86 +1,35 @@
 from class_App import Aplicacion
 
-"""""
-class Tienda(Aplicacion):
-    apps=["Mensajeria","Contactos","Email","Configuracion","Telefono"]
-    def __innit__(self):
-        super().__init__(6,'Tienda')
-    def descargar(self, app):
-        if app == "Mensajeria":
-            return Mensajeria()
-        if app == 'Contactos':
-            return Contactos()
-        if app == 'Email':
-            return Email()
-        if app == 'Configuracion':
-            return Configuracion()
-        if app == 'Telefono':
-            return Telefono()
-
-class Grafico(Aplicacion):
-    def __innit__(self, ID,nombre):
-        super().__init__(ID,nombre)
-        
-
-#CLASE PARA DESPUES
-
-"""""
-# def descargar_app(self,nombre_app):
-    #     if self.estado==True:
-    #         if (hasattr(self.celular,nombre_app)):
-    #             app= getattr(self.celular,nombre_app)
-    #             if app.descargada:
-    #               print('App ya descargada')
-    #             else:
-    #                 app.descargada=True
-    #                 print('App descargada')
-    #         else:
-    #             print('App no existente')
-    #     else:
-    #         print('App Tienda no abierta ')
-
-    # def eliminar_app(self,nombre_app):
-    #     if self.estado==True:
-    #         if (hasattr(self.celular,nombre_app)):
-    #             app= getattr(self.celular,nombre_app)
-    #             if not(app.descargada):
-    #               print('App no descargada')
-    #             else:
-    #                 app.descargada=False
-    #                 print('App eliminda')
-    #         else:
-    #             print('App no existente')
-    #     else:
-    #         print('App Tienda no abierta ')
+# Clase Tienda que hereda de la clase Aplicacion
 class Tienda(Aplicacion):
 
+    # Constructor de la clase Tienda
     def __init__(self):
-        super().__init__(6,"Tienda")
-        self.aplicaciones_descargadas={6:"Tienda",5:"Configuracion"}
+        super().__init__(6,"Tienda")  # Llama al constructor de Aplicacion con codigo 6 y nombre "Tienda"
+        self.aplicaciones_descargadas={6:"Tienda",5:"Configuracion"}  # Inicializa un diccionario con aplicaciones preinstaladas
     
+    # Metodo para descargar una nueva aplicacion
     def descargar_aplicacion(self, codigo, nombre):
-        if codigo in self.aplicaciones_descargadas:
-            print(f"La aplicación con código {codigo} ya está descargada.")
+        if codigo in self.aplicaciones_descargadas:  # Verifica si el codigo ya esta en aplicaciones_descargadas
+            print(f"La aplicacion con codigo {codigo} ya esta descargada.")  # Informa que la aplicacion ya esta descargada
         else:
-            self.aplicaciones_descargadas[codigo] = nombre
-            print(f"Aplicación {nombre} descargada con el código {codigo}.")
+            self.aplicaciones_descargadas[codigo] = nombre  # Agrega la aplicacion al diccionario
+            print(f"Aplicacion {nombre} descargada con el codigo {codigo}.")  # Informa que la aplicacion fue descargada
 
+    # Metodo para mostrar las aplicaciones descargadas
     def mostrar_aplicaciones(self):
-        print("Aplicaciones descargadas:")
-        for codigo, nombre in self.aplicaciones_descargadas.items():
-            print(f"Código: {codigo}, Nombre: {nombre}")
+        print("Aplicaciones descargadas:")  # Muestra un titulo
+        for codigo, nombre in self.aplicaciones_descargadas.items():  # Recorre el diccionario de aplicaciones descargadas
+            print(f"Codigo: {codigo}, Nombre: {nombre}")  # Muestra el codigo y nombre de cada aplicacion descargada
         
+    # Metodo para eliminar una aplicacion descargada
     def eliminar_aplicacion(self, codigo):
-        # Comprobar si el código es para "Tienda" o "Configuración"
+        # Verifica si el codigo corresponde a una aplicacion preinstalada (Tienda o Configuracion)
         if codigo in [6, 5]:
-            print("No se puede eliminar la aplicación preinstalada:", self.aplicaciones_descargadas[codigo])
+            print("No se puede eliminar la aplicacion preinstalada:", self.aplicaciones_descargadas[codigo])  # Muestra mensaje de error
         else:
-            if codigo in self.aplicaciones_descargadas:
-                del self.aplicaciones_descargadas[codigo]
-                print(f"Aplicación con código {codigo} eliminada.")
+            if codigo in self.aplicaciones_descargadas:  # Verifica si el codigo existe en aplicaciones_descargadas
+                del self.aplicaciones_descargadas[codigo]  # Elimina la aplicacion del diccionario
+                print(f"Aplicacion con codigo {codigo} eliminada.")  # Informa que la aplicacion fue eliminada
             else:
-                print(f"No se encontró la aplicación con código {codigo}.")
-    
-        
-        
-    
+                print(f"No se encontro la aplicacion con codigo {codigo}.")  # Informa que la aplicacion no existe en el diccionario
