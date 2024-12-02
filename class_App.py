@@ -6,12 +6,12 @@ class Aplicacion:
         self.estado=False
         self.descargada= False 
         
-
+    # Abrir aplicacion
     def abrir(self):
             self.estado = True
             print(f"Abriendo {self.nombre}.")
 
-
+     # Cerrar aplicacion 
     def cerrar(self):
         if self.estado:
             self.estado = False
