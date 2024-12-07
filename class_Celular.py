@@ -124,7 +124,7 @@ class Celular:
     def on_off_red_movil_celular(self):
         if self.encendido and not self.bloqueado:
             if self.configuracion.estado:
-                self.configuracion.on_off_red_movil
+                self.configuracion.on_off_red_movil()
             else: 
                 print('Aplicacion cerrada.')
         else:

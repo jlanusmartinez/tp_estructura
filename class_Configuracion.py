@@ -25,7 +25,7 @@ class Configuracion(Aplicacion):
         if self.datos_activados == False:
             self.datos_activados = True
             print('Datos móviles activados')
-        elif self.datos_activados == True:
+        else:
             self.datos_activados = False
             print('Datos móviles desactivados')
 
