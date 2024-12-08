@@ -601,6 +601,29 @@ class Celular:
                 print('Aplicacion:Calculadora no descargada')
         else:
                 print("El celular debe estar encendido y desbloqueado")
+    
+    def evaluar_expresion(self, expresion):
+        """Evalúa una expresión simbólica en la calculadora."""
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(8):  # Verifica que la calculadora esté disponible
+                return self.calculadora.evaluar_expresion(expresion)
+            else:
+                print("Aplicación: Calculadora no descargada.")
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+    
+    def _evaluar(self, expresion):
+        """Método auxiliar para evaluar una expresión utilizando la lógica de la calculadora."""
+        if self.encendido and not self.bloqueado:
+            if self.validar_aplicacion(8):  # Verifica que la calculadora esté disponible
+                return self.calculadora._evaluar(expresion)
+            else:
+                print("Aplicación: Calculadora no descargada.")
+        else:
+            print("El celular debe estar encendido y desbloqueado.")
+
+
+                
 
 
 

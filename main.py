@@ -131,6 +131,9 @@ def funcionalidades_calculadora():
     print('\nRealizo operaciones basicas. \n')
     celular1.usar_calculadora('sumar', 3, 5)
     celular1.usar_calculadora('multiplicar', 3, 5)
+    celular1.evaluar_expresion("3 + 5 * (2 - 8)")
+    celular1.evaluar_expresion("((300-50) + 30) + 2 * (300 * 2) /2")
+
 
     celular1.cerrar_calculadora()
 

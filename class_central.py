@@ -9,9 +9,21 @@ from class_registro_dispositivo import Registro_dispositivos
 class Central :
     
     def __init__(self):
-        self.dispositivos_registrados=Registro_dispositivos()
-        self.registro_llamadas=[]
-        self.registro_sms=[]
+        self.dispositivos_registrados = Registro_dispositivos()
+        self.registro_llamadas = []
+        self.registro_sms = []
+        self.centrales_conectadas = []  # Lista de otras centrales conectadas
+
+
+    
+    def conectar_central(self, otra_central):
+        if otra_central not in self.centrales_conectadas:
+            self.centrales_conectadas.append(otra_central)
+            otra_central.centrales_conectadas.append(self)  # Conexión bidireccional
+            print("Centrales conectadas correctamente.")
+        else:
+            print("Las centrales ya están conectadas.")
+
         
 
     def agregar_celular(self,celular):
@@ -56,47 +68,55 @@ class Central :
     def llamada(self, numero_emisor, numero_recibe, duracion):
         if not self.estado_dispositivo(numero_emisor):
             print("Llamada fallida: El emisor no está disponible.")
-            return 
+            return
         
-        if not self.estado_dispositivo(numero_recibe):
+        # Buscar al receptor en esta central
+        receptor = self.dispositivos_registrados.get(numero_recibe)
+        
+        # Si el receptor no está en esta central, buscar en las centrales conectadas
+        if not receptor:
+            for central in self.centrales_conectadas:
+                receptor = central.dispositivos_registrados.get(numero_recibe)
+                if receptor:
+                    otra_central = central
+                    break
+            else:
+                print("Llamada fallida: El receptor no está registrado en esta central ni en las conectadas.")
+                return
+        
+        # Validar estado del receptor en la central correspondiente
+        if not self.estado_dispositivo(numero_emisor) or not otra_central.estado_dispositivo(numero_recibe):
             print("Llamada fallida: El receptor no está disponible.")
             return
         
+        emisor = self.dispositivos_registrados[numero_emisor]
         
-        celular_1 = self.dispositivos_registrados.get(numero_emisor)
-        celular_2 = self.dispositivos_registrados.get(numero_recibe)
-        
-        if not celular_1.estado_red_movil:
-            print ("Llamada fallida: El emisor no tiene red activada.")
-            return 
-        if not celular_1.estado_datos:
-             print('Llamada fallida: El emisor no tiene datos activados.')
-        if not celular_2.estado_red_movil or not celular_2.estado_datos:
-            print ("Llamada fallida: El receptor no tiene red activada ni datos activados.")
+        # Validar estado de red y datos
+        if not emisor.estado_red_movil or not emisor.estado_datos:
+            print("Llamada fallida: El emisor no tiene red o datos activados.")
             return
-        if celular_1.validar_aplicacion(4):
-                    if celular_1.telefono.estado:
-                            hora_actual = datetime.now()     
-                            # Verificar si el receptor está ocupado
-                            if celular_2.telefono.ocupado_hasta and hora_actual < celular_2.telefono.ocupado_hasta:
-                                print(f"No se puede realizar la llamada. El receptor está ocupado hasta: {celular_2.telefono.ocupado_hasta}.")
-                                return
-                                    
-                            # Verificar si el emisor está ocupado
-                            if celular_1.telefono.ocupado_hasta and hora_actual < celular_1.telefono.ocupado_hasta:
-                                print(f"No se puede realizar la llamada. El emisor está ocupado hasta: {celular_1.telefono.ocupado_hasta}.")
-                                return
-                                    
-                            # Si ambos están disponibles, registrar la llamada
-                            celular_1.hacer_llamada(numero_recibe, duracion, datetime.now())
-                            celular_2.telefono.recibir_llamada(numero_emisor, duracion, datetime.now())
-                            print(f"Llamada conectada entre {numero_emisor} y {numero_recibe}.")
-                            self.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", datetime.now()))   
-                    
-                    else:
-                        print('Aplicacion no abierta')
-        else: 
-                print('Aplicacion:Telefono no descargada')
+        
+        if not receptor.estado_red_movil or not receptor.estado_datos:
+            print("Llamada fallida: El receptor no tiene red o datos activados.")
+            return
+        
+        # Verificar ocupación
+        hora_actual = datetime.now()
+        if emisor.telefono.ocupado_hasta and hora_actual < emisor.telefono.ocupado_hasta:
+            print(f"El emisor está ocupado hasta: {emisor.telefono.ocupado_hasta}.")
+            return
+        
+        if receptor.telefono.ocupado_hasta and hora_actual < receptor.telefono.ocupado_hasta:
+            print(f"El receptor está ocupado hasta: {receptor.telefono.ocupado_hasta}.")
+            return
+        
+        # Registrar llamada en ambas centrales
+        emisor.hacer_llamada(numero_recibe, duracion, hora_actual)
+        receptor.telefono.recibir_llamada(numero_emisor, duracion, hora_actual)
+        print(f"Llamada conectada entre {numero_emisor} y {numero_recibe}.")
+        self.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", hora_actual))
+        if receptor in otra_central.dispositivos_registrados.values():
+            otra_central.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", hora_actual))
 
         
         hora_actual = datetime.now()
