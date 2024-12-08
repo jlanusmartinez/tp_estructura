@@ -11,6 +11,17 @@ class Central:
         self.dispositivos_registrados = Registro_dispositivos()
         self.registro_llamadas = []
         self.registro_sms = []
+        self.centrales_conectadas = []  # Lista de otras centrales conectadas
+    
+    def conectar_central(self, otra_central):
+        if otra_central not in self.centrales_conectadas:
+            self.centrales_conectadas.append(otra_central)
+            otra_central.centrales_conectadas.append(self)  # Conexión bidireccional
+            print("Centrales conectadas correctamente.")
+        else:
+            print("Las centrales ya están conectadas.")
+
+
 
     # Métodos de gestión de dispositivos
     def agregar_celular(self, celular):
