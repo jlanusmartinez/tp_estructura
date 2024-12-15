@@ -61,7 +61,7 @@ try:
                   opcion = input("Selecciona una opción (1-2): ")
             
             if opcion == '1':
-                # Crear centrales
+                
 
                 celular1.abrir_telefono()
                 celular2.abrir_telefono()
@@ -83,6 +83,7 @@ try:
                 celular1.evaluar_expresion("3 + 5 * (2 - 8)")
                 celular1.evaluar_expresion("((300-50) + 30) + 2 * (300 * 2) /2")
                 celular1.evaluar_expresion("((300-50) + 30) + 2 * (300 * 2) /0")
+                celular1.evaluar_expresion("((300-50) + 30)) + 2 * (300 * 2)")
                 celular1.cerrar_calculadora()
 except: 
       print("Error generico") 
