@@ -71,8 +71,7 @@ try:
                 celular2.abrir_telefono()
                 celular3.abrir_telefono()
                 
-                # LLamada entre dos celulares en distintas centrales conectadas
-
+                # LLamada entre dos celulares en distintas centrales conectadas 
                 central1.llamada('1129999999', '1111111122', 5)
                 
                 # LLamada entre dos celulares en distintas centrales no conectadas
@@ -84,6 +83,7 @@ try:
                 celular1.cerrar_telefono()
                 celular2.cerrar_telefono()
             elif opcion == '2':
+                
                 celular1.abrir_calculadora()
                 celular1.usar_calculadora('sumar', 3, 5)
                 celular1.usar_calculadora('multiplicar', 3, 5)
