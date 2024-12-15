@@ -50,7 +50,7 @@ class Calculadora(Aplicacion):
             print(f"El resultado de la expresión '{expresion}' es: {resultado}")
             return resultado
         except Exception as e:
-            print(f"Error al evaluar la expresión: {e}")
+            print(f"SyntaxError: {e}")
             return None
 
     def _evaluar(self, expresion):
