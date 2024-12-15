@@ -38,6 +38,11 @@ class Calculadora(Aplicacion):
             return resultado
         else:
             print("La aplicación Calculadora no está abierta.")
+            
+            
+            
+            
+# Agregado para el Final 
     
     def evaluar_expresion(self, expresion):
         """Evalúa una expresión simbólica (con números, operadores y paréntesis)."""
@@ -82,7 +87,7 @@ class Calculadora(Aplicacion):
         # **Elimina espacios en blanco de la expresión**
         expresion = expresion.replace(" ", "")
 
-        # Algoritmo de Shunting Yard
+
         operadores = []
         valores = []
         i = 0

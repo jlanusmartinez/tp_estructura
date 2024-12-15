@@ -58,57 +58,7 @@ class Central:
             return False
         return True
 
-    # Métodos de llamadas
-    # def llamada(self, numero_emisor, numero_recibe, duracion):
-    #     # Validar estado del emisor
-    #     if not self.estado_dispositivo(numero_emisor):
-    #         print("Llamada fallida: El emisor no está disponible.")
-    #         return
-
-    #     # Validar estado del receptor
-    #     if not self.estado_dispositivo(numero_recibe):
-    #         print("Llamada fallida: El receptor no está disponible.")
-    #         return
-
-    #     celular_1 = self.dispositivos_registrados.get(numero_emisor)
-    #     celular_2 = self.dispositivos_registrados.get(numero_recibe)
-
-    #     # Validar red móvil y datos
-    #     if not celular_1.estado_red_movil:
-    #         print("Llamada fallida: El emisor no tiene red activada.")
-    #         return
-    #     if not celular_1.estado_datos:
-    #         print("Llamada fallida: El emisor no tiene datos activados.")
-    #         return
-    #     if not celular_2.estado_red_movil or not celular_2.estado_datos:
-    #         print("Llamada fallida: El receptor no tiene red activada ni datos activados.")
-    #         return
-
-    #     # Validar la aplicación Teléfono
-    #     if celular_1.validar_aplicacion(4):
-    #         if celular_1.telefono.estado:
-    #             hora_actual = datetime.now()
-
-    #             # Verificar ocupación del receptor
-    #             if celular_2.telefono.ocupado_hasta and hora_actual < celular_2.telefono.ocupado_hasta:
-    #                 print(f"No se puede realizar la llamada. El receptor está ocupado hasta: {celular_2.telefono.ocupado_hasta}.")
-    #                 return
-
-    #             # Verificar ocupación del emisor
-    #             if celular_1.telefono.ocupado_hasta and hora_actual < celular_1.telefono.ocupado_hasta:
-    #                 print(f"No se puede realizar la llamada. El emisor está ocupado hasta: {celular_1.telefono.ocupado_hasta}.")
-    #                 return
-
-    #             # Registrar la llamada
-    #             celular_1.hacer_llamada(numero_recibe, duracion, datetime.now())
-    #             celular_2.telefono.recibir_llamada(numero_emisor, duracion, datetime.now())
-    #             print(f"Llamada conectada entre {numero_emisor} y {numero_recibe}.")
-    #             self.registro_llamadas.append((numero_emisor, numero_recibe, "conectada", datetime.now()))
-
-    #         else:
-    #             print("Aplicación no abierta.")
-    #     else:
-    #         print("Aplicación: Teléfono no descargada.")
+# Cambios Para el Final
     
     def obtener_central(self, numero):
         """Busca y devuelve la central a la que pertenece el número proporcionado."""
@@ -118,7 +68,7 @@ class Central:
         return None
 
     def conectar_central(self, otra_central):
-        """Conecta dos centrales telefónicas de manera bidireccional (conecta las 2 al mismo time)."""
+        """Conecta dos centrales telefónicas de manera bidireccional (conecta las 2 al mismo timpo)."""
         if otra_central not in self.centrales_conectadas:
             self.centrales_conectadas.append(otra_central)
             otra_central.centrales_conectadas.append(self)  # Conexión bidireccional
