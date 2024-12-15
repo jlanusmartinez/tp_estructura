@@ -4,20 +4,26 @@ from class_Calculadora import Calculadora
 
 try:
       if __name__ == '__main__':
-            print('\nSe crean las centrales \n')
-            central1 = Central()
-            central2 = Central()
-            central3 = Central()    
+            print("\n¿Qué deseas ver?")
+            print("1. Funcionalidades de Telefono")
+            print("2. Funcionalidades de Calculadora")
 
-
-
-
+            opcion = input("Selecciona una opción (1-2): ")
+            while opcion not in ["1", "2"]:
+                  print("Opción no válida. Por favor, seleccione una opción correcta.")
+                  opcion = input("Selecciona una opción (1-2): ")
+                  
+            if opcion == '1':
+                print('\nSe crean las centrales \n')
+                central1 = Central()
+                central2 = Central()
+                central3 = Central()    
                 celular1 = Celular(1, 'pedro', '1234', 'phone 8', 'IOs', 'version 8', '10', '123', '1129999999')
                 celular2 = Celular(2, 'franco', '2020', 'phone 8', 'IOs', 'version 8', '10', '123', '1111111122')
                 celular3 = Celular(3, 'joaco', '3245', 'Galaxy S21', 'Android', '11', '8', '128', '1134567890')
                 print(celular1)
 
-            print('\nSe agregan a la central los dispositivos\n')
+                print('\nSe agregan a la central los dispositivos\n')
 
                 central1.agregar_celular(celular1)
                 central2.agregar_celular(celular2)
@@ -47,7 +53,6 @@ try:
                 celular1.abrir_telefono()
                 celular2.abrir_telefono()
                 celular3.abrir_telefono()
-                celular4.abrir_telefono()
 
                 central1.llamada('1129999999', '1111111122', 5)
                 central3.llamada('1134567890', '1129999999', 7)
@@ -66,6 +71,7 @@ try:
                 celular1.evaluar_expresion("((300-50) + 30) + 2 * (300 * 2) /2")
                 celular1.evaluar_expresion("((300-50) + 30) + 2 * (300 * 2) /0")
                 celular1.cerrar_calculadora()
+        
 except: 
       print("Error generico") 
       
